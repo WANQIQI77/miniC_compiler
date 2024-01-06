@@ -1,0 +1,137 @@
+   yacc.py: 362:PLY: PARSE DEBUG START
+   yacc.py: 469:Action : Reduce rule [typeSpecifier -> VOID] with ['void'] and goto state 6
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e07903a0> (TreeNode(void))
+   yacc.py: 473:Action : Reduce rule [empty -> <empty>] with [] and goto state 26
+   yacc.py: 548:Result : <NoneType @ 0x7ff98e15bcd8> (None)
+   yacc.py: 469:Action : Reduce rule [params -> empty] with [None] and goto state 43
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790220> (TreeNode(params))
+   yacc.py: 473:Action : Reduce rule [empty -> <empty>] with [] and goto state 110
+   yacc.py: 548:Result : <NoneType @ 0x7ff98e15bcd8> (None)
+   yacc.py: 469:Action : Reduce rule [localDeclarations -> empty] with [None] and goto state 109
+   yacc.py: 506:Result : <NoneType @ 0x7ff98e15bcd8> (None)
+   yacc.py: 469:Action : Reduce rule [typeSpecifier -> INT] with ['int'] and goto state 126
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e07901c0> (TreeNode(int))
+   yacc.py: 469:Action : Reduce rule [varDeclarationType -> ID] with ['x'] and goto state 13
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e07900d0> (TreeNode(varDeclarationType ))
+   yacc.py: 469:Action : Reduce rule [varDeclarationList -> varDeclarationType] with [<MyTreeNode @ 0x271e07900d0>] and goto state 10
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790070> (TreeNode(varDeclarationList))
+   yacc.py: 469:Action : Reduce rule [varDeclarationType -> ID] with ['y'] and goto state 20
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078daf0> (TreeNode(varDeclarationType ))
+   yacc.py: 469:Action : Reduce rule [varDeclarationList -> varDeclarationList COMMA varDeclarationType] with [<MyTreeNode @ 0x271e0790070>,',',<MyTreeNode @ 0x271e078daf0>] and goto state 10
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790070> (TreeNode(varDeclarationList))
+   yacc.py: 469:Action : Reduce rule [factor -> NUM] with [10] and goto state 31
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790040> (TreeNode(10))
+   yacc.py: 469:Action : Reduce rule [term -> factor] with [TreeNode(10)] and goto state 30
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790040> (TreeNode(10))
+   yacc.py: 469:Action : Reduce rule [additiveExpression -> term] with [TreeNode(10)] and goto state 29
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790040> (TreeNode(10))
+   yacc.py: 469:Action : Reduce rule [varDeclarationType -> ID ASSIGN additiveExpression] with ['c','=',TreeNode(10)] and goto state 20
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078da00> (TreeNode(varDeclarationType ))
+   yacc.py: 469:Action : Reduce rule [varDeclarationList -> varDeclarationList COMMA varDeclarationType] with [<MyTreeNode @ 0x271e0790070>,',',<MyTreeNode @ 0x271e078da00>] and goto state 10
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790070> (TreeNode(varDeclarationList))
+   yacc.py: 469:Action : Reduce rule [varDeclarationType -> ID LBRACKET NUM RBRACKET] with ['d','[',2,']'] and goto state 20
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d820> (TreeNode(varDeclarationType ))
+   yacc.py: 469:Action : Reduce rule [varDeclarationList -> varDeclarationList COMMA varDeclarationType] with [<MyTreeNode @ 0x271e0790070>,',',<MyTreeNode @ 0x271e078d820>] and goto state 10
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790070> (TreeNode(varDeclarationList))
+   yacc.py: 469:Action : Reduce rule [varDeclaration -> typeSpecifier varDeclarationList SEMI] with [TreeNode(int),<MyTreeNode @ 0x271e0790070>,';'] and goto state 124
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d5b0> (TreeNode(varDeclaration))
+   yacc.py: 469:Action : Reduce rule [localDeclarations -> localDeclarations varDeclaration] with [None,<MyTreeNode @ 0x271e078d5b0>] and goto state 109
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e07900a0> (TreeNode(localDeclarations))
+   yacc.py: 473:Action : Reduce rule [empty -> <empty>] with [] and goto state 125
+   yacc.py: 548:Result : <NoneType @ 0x7ff98e15bcd8> (None)
+   yacc.py: 469:Action : Reduce rule [statementList -> empty] with [None] and goto state 123
+   yacc.py: 506:Result : <NoneType @ 0x7ff98e15bcd8> (None)
+   yacc.py: 469:Action : Reduce rule [var -> ID] with ['x'] and goto state 57
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790100> (TreeNode(var))
+   yacc.py: 469:Action : Reduce rule [var -> ID] with ['a'] and goto state 57
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d730> (TreeNode(var))
+   yacc.py: 469:Action : Reduce rule [factor -> var] with [TreeNode(var)] and goto state 31
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d730> (TreeNode(var))
+   yacc.py: 469:Action : Reduce rule [term -> factor] with [TreeNode(var)] and goto state 30
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d730> (TreeNode(var))
+   yacc.py: 469:Action : Reduce rule [additiveExpression -> term] with [TreeNode(var)] and goto state 63
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d730> (TreeNode(var))
+   yacc.py: 469:Action : Reduce rule [shiftExpression -> additiveExpression] with [TreeNode(var)] and goto state 62
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d730> (TreeNode(var))
+   yacc.py: 469:Action : Reduce rule [bitwise_expression -> shiftExpression] with [TreeNode(var)] and goto state 61
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d730> (TreeNode(var))
+   yacc.py: 469:Action : Reduce rule [logical_expression -> bitwise_expression] with [TreeNode(var)] and goto state 60
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d730> (TreeNode(var))
+   yacc.py: 469:Action : Reduce rule [relop -> GT] with ['>'] and goto state 89
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d460> (TreeNode(>))
+   yacc.py: 469:Action : Reduce rule [factor -> NUM] with [0] and goto state 31
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d6d0> (TreeNode(0))
+   yacc.py: 469:Action : Reduce rule [term -> factor] with [TreeNode(0)] and goto state 30
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d6d0> (TreeNode(0))
+   yacc.py: 469:Action : Reduce rule [additiveExpression -> term] with [TreeNode(0)] and goto state 63
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d6d0> (TreeNode(0))
+   yacc.py: 469:Action : Reduce rule [shiftExpression -> additiveExpression] with [TreeNode(0)] and goto state 62
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d6d0> (TreeNode(0))
+   yacc.py: 469:Action : Reduce rule [bitwise_expression -> shiftExpression] with [TreeNode(0)] and goto state 61
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d6d0> (TreeNode(0))
+   yacc.py: 469:Action : Reduce rule [logical_expression -> bitwise_expression] with [TreeNode(0)] and goto state 118
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d6d0> (TreeNode(0))
+   yacc.py: 469:Action : Reduce rule [simpleExpression -> logical_expression relop logical_expression] with [TreeNode(var),TreeNode(>),TreeNode(0)] and goto state 58
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d550> (TreeNode(simpleExpression))
+   yacc.py: 469:Action : Reduce rule [factor -> NUM] with [2] and goto state 31
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d910> (TreeNode(2))
+   yacc.py: 469:Action : Reduce rule [term -> factor] with [TreeNode(2)] and goto state 30
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d910> (TreeNode(2))
+   yacc.py: 469:Action : Reduce rule [additiveExpression -> term] with [TreeNode(2)] and goto state 63
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d910> (TreeNode(2))
+   yacc.py: 469:Action : Reduce rule [addop -> PLUS] with ['+'] and goto state 49
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d520> (TreeNode(+))
+   yacc.py: 469:Action : Reduce rule [factor -> NUM] with [1] and goto state 31
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d040> (TreeNode(1))
+   yacc.py: 469:Action : Reduce rule [term -> factor] with [TreeNode(1)] and goto state 82
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d040> (TreeNode(1))
+   yacc.py: 469:Action : Reduce rule [additiveExpression -> additiveExpression addop term] with [TreeNode(2),TreeNode(+),TreeNode(1)] and goto state 63
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cc40> (TreeNode(additiveExpression))
+   yacc.py: 469:Action : Reduce rule [shiftExpression -> additiveExpression] with [<MyTreeNode @ 0x271e078cc40>] and goto state 62
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cc40> (TreeNode(additiveExpression))
+   yacc.py: 469:Action : Reduce rule [bitwise_expression -> shiftExpression] with [<MyTreeNode @ 0x271e078cc40>] and goto state 61
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cc40> (TreeNode(additiveExpression))
+   yacc.py: 469:Action : Reduce rule [logical_expression -> bitwise_expression] with [<MyTreeNode @ 0x271e078cc40>] and goto state 117
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cc40> (TreeNode(additiveExpression))
+   yacc.py: 469:Action : Reduce rule [factor -> NUM] with [3] and goto state 31
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d0a0> (TreeNode(3))
+   yacc.py: 469:Action : Reduce rule [term -> factor] with [TreeNode(3)] and goto state 30
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d0a0> (TreeNode(3))
+   yacc.py: 469:Action : Reduce rule [mulop -> TIMES] with ['*'] and goto state 52
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d100> (TreeNode(*))
+   yacc.py: 469:Action : Reduce rule [factor -> NUM] with [1] and goto state 83
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cfa0> (TreeNode(1))
+   yacc.py: 469:Action : Reduce rule [term -> term mulop factor] with [TreeNode(3),TreeNode(*),TreeNode(1)] and goto state 30
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cb80> (TreeNode(term))
+   yacc.py: 469:Action : Reduce rule [additiveExpression -> term] with [TreeNode(term)] and goto state 63
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cb80> (TreeNode(term))
+   yacc.py: 469:Action : Reduce rule [shiftExpression -> additiveExpression] with [TreeNode(term)] and goto state 62
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cb80> (TreeNode(term))
+   yacc.py: 469:Action : Reduce rule [bitwise_expression -> shiftExpression] with [TreeNode(term)] and goto state 61
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cb80> (TreeNode(term))
+   yacc.py: 469:Action : Reduce rule [logical_expression -> bitwise_expression] with [TreeNode(term)] and goto state 143
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cb80> (TreeNode(term))
+   yacc.py: 469:Action : Reduce rule [ternaryExpression -> simpleExpression QUESTION logical_expression COLON logical_expression] with [<MyTreeNode @ 0x271e078d550>,'?',<MyTreeNode @ 0x271e078cc40>,':',TreeNode(term)] and goto state 59
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cc70> (TreeNode(ternaryExpression))
+   yacc.py: 469:Action : Reduce rule [expression -> ternaryExpression] with [<MyTreeNode @ 0x271e078cc70>] and goto state 114
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078cc70> (TreeNode(ternaryExpression))
+   yacc.py: 469:Action : Reduce rule [expression -> var ASSIGN expression] with [TreeNode(var),'=',<MyTreeNode @ 0x271e078cc70>] and goto state 137
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e079e970> (TreeNode(assignExpression = ))
+   yacc.py: 469:Action : Reduce rule [expressionStmt -> expression SEMI] with [<MyTreeNode @ 0x271e079e970>,';'] and goto state 131
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e079e970> (TreeNode(assignExpression = ))
+   yacc.py: 469:Action : Reduce rule [statement -> expressionStmt] with [<MyTreeNode @ 0x271e079e970>] and goto state 130
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e079e970> (TreeNode(assignExpression = ))
+   yacc.py: 469:Action : Reduce rule [statementList -> statementList statement] with [None,<MyTreeNode @ 0x271e079e970>] and goto state 123
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e078d070> (TreeNode(statementList))
+   yacc.py: 469:Action : Reduce rule [compoundStmt -> LBRACE localDeclarations statementList RBRACE] with ['{',<MyTreeNode @ 0x271e07900a0>,<MyTreeNode @ 0x271e078d070>,'}'] and goto state 107
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790340> (TreeNode(compoundStmt))
+   yacc.py: 469:Action : Reduce rule [funDeclaration -> typeSpecifier MAIN LPAREN params RPAREN compoundStmt] with [TreeNode(void),'main','(',<MyTreeNode @ 0x271e0790220>,')',<MyTreeNode @ 0x271e0790340>] and goto state 5
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790190> (TreeNode(funDeclaration))
+   yacc.py: 469:Action : Reduce rule [declaration -> funDeclaration] with [<MyTreeNode @ 0x271e0790190>] and goto state 3
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e0790190> (TreeNode(funDeclaration))
+   yacc.py: 469:Action : Reduce rule [declarationList -> declaration] with [<MyTreeNode @ 0x271e0790190>] and goto state 2
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e07903a0> (TreeNode(declarationList))
+   yacc.py: 469:Action : Reduce rule [program -> declarationList] with [<MyTreeNode @ 0x271e07903a0>] and goto state 1
+   yacc.py: 506:Result : <MyTreeNode @ 0x271e07903a0> (TreeNode(declarationList))
+   yacc.py: 571:Done   : Returning <MyTreeNode @ 0x271e07903a0> (TreeNode(declarationList))
+   yacc.py: 572:PLY: PARSE DEBUG END

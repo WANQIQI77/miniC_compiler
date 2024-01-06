@@ -1,0 +1,15 @@
+// Fibonacci   1 1 2 3 5 8 13 21
+int f(int m) 
+{
+     if (m <= 2)
+          return 1;
+     else
+          return f(m - 1) + f(m - 2);
+}
+
+void main() {
+     int x;
+     x = input();
+     output(f(x)); 
+}
+

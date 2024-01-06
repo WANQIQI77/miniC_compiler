@@ -1,0 +1,3844 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> declarationList
+Rule 2     declarationList -> declarationList declaration
+Rule 3     declarationList -> declaration
+Rule 4     declaration -> varDeclaration
+Rule 5     declaration -> funDeclaration
+Rule 6     varDeclaration -> typeSpecifier varDeclarationList SEMI
+Rule 7     varDeclarationList -> varDeclarationList COMMA varDeclarationType
+Rule 8     varDeclarationList -> varDeclarationType
+Rule 9     varDeclarationType -> ID
+Rule 10    varDeclarationType -> ID ASSIGN additiveExpression
+Rule 11    varDeclarationType -> ID LBRACKET NUM RBRACKET
+Rule 12    typeSpecifier -> INT
+Rule 13    typeSpecifier -> VOID
+Rule 14    funDeclaration -> typeSpecifier ID LPAREN params RPAREN compoundStmt
+Rule 15    funDeclaration -> typeSpecifier MAIN LPAREN params RPAREN compoundStmt
+Rule 16    params -> paramList
+Rule 17    params -> VOID
+Rule 18    params -> empty
+Rule 19    paramList -> paramList COMMA param
+Rule 20    paramList -> param
+Rule 21    param -> typeSpecifier ID
+Rule 22    param -> typeSpecifier ID LBRACKET RBRACKET
+Rule 23    compoundStmt -> LBRACE localDeclarations statementList RBRACE
+Rule 24    localDeclarations -> localDeclarations varDeclaration
+Rule 25    localDeclarations -> empty
+Rule 26    statementList -> statementList statement
+Rule 27    statementList -> empty
+Rule 28    statement -> expressionStmt
+Rule 29    statement -> compoundStmt
+Rule 30    statement -> selectionStmt
+Rule 31    statement -> iterationStmt
+Rule 32    statement -> returnStmt
+Rule 33    statement -> outputStmt
+Rule 34    expressionStmt -> expression SEMI
+Rule 35    expressionStmt -> SEMI
+Rule 36    selectionStmt -> IF LPAREN expression RPAREN statement
+Rule 37    selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement
+Rule 38    iterationStmt -> WHILE LPAREN expression RPAREN statement
+Rule 39    returnStmt -> RETURN SEMI
+Rule 40    returnStmt -> RETURN expression SEMI
+Rule 41    outputStmt -> OUTPUT LPAREN expression RPAREN SEMI
+Rule 42    expression -> var ASSIGN expression
+Rule 43    expression -> simpleExpression
+Rule 44    expression -> var PLUS_ASSIGN expression
+Rule 45    expression -> var MINUS_ASSIGN expression
+Rule 46    expression -> ternaryExpression
+Rule 47    var -> ID
+Rule 48    var -> ID LBRACKET expression RBRACKET
+Rule 49    ternaryExpression -> simpleExpression QUESTION logical_expression COLON logical_expression
+Rule 50    simpleExpression -> logical_expression relop logical_expression
+Rule 51    simpleExpression -> logical_expression
+Rule 52    relop -> GT
+Rule 53    relop -> LT
+Rule 54    relop -> GE
+Rule 55    relop -> LE
+Rule 56    relop -> EQ
+Rule 57    relop -> NEQ
+Rule 58    logical_expression -> logical_expression logical_op bitwise_expression
+Rule 59    logical_expression -> bitwise_expression
+Rule 60    logical_op -> AND
+Rule 61    logical_op -> OR
+Rule 62    bitwise_expression -> bitwise_expression bitwise_op shiftExpression
+Rule 63    bitwise_expression -> shiftExpression
+Rule 64    bitwise_op -> LAN
+Rule 65    bitwise_op -> LOR
+Rule 66    bitwise_op -> XOR
+Rule 67    shiftExpression -> shiftExpression shiftop additiveExpression
+Rule 68    shiftExpression -> additiveExpression
+Rule 69    shiftop -> SHL
+Rule 70    shiftop -> SHR
+Rule 71    additiveExpression -> additiveExpression addop term
+Rule 72    additiveExpression -> term
+Rule 73    addop -> PLUS
+Rule 74    addop -> MINUS
+Rule 75    term -> term mulop factor
+Rule 76    term -> factor
+Rule 77    mulop -> TIMES
+Rule 78    mulop -> DIVIDE
+Rule 79    mulop -> MOD
+Rule 80    factor -> LPAREN expression RPAREN
+Rule 81    factor -> var
+Rule 82    factor -> call
+Rule 83    factor -> NUM
+Rule 84    factor -> NOT factor
+Rule 85    factor -> INC factor
+Rule 86    factor -> DEC factor
+Rule 87    factor -> NEGATION factor
+Rule 88    call -> ID LPAREN args RPAREN
+Rule 89    call -> INPUT LPAREN args RPAREN
+Rule 90    args -> argList
+Rule 91    args -> VOID
+Rule 92    args -> empty
+Rule 93    argList -> argList COMMA expression
+Rule 94    argList -> expression
+Rule 95    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 60
+ASSIGN               : 10 42
+COLON                : 49
+COMMA                : 7 19 93
+DEC                  : 86
+DIVIDE               : 78
+ELSE                 : 37
+EQ                   : 56
+GE                   : 54
+GT                   : 52
+ID                   : 9 10 11 14 21 22 47 48 88
+IF                   : 36 37
+INC                  : 85
+INPUT                : 89
+INT                  : 12
+LAN                  : 64
+LBRACE               : 23
+LBRACKET             : 11 22 48
+LE                   : 55
+LOR                  : 65
+LPAREN               : 14 15 36 37 38 41 80 88 89
+LT                   : 53
+MAIN                 : 15
+MINUS                : 74
+MINUS_ASSIGN         : 45
+MOD                  : 79
+NEGATION             : 87
+NEQ                  : 57
+NOT                  : 84
+NUM                  : 11 83
+OR                   : 61
+OUTPUT               : 41
+PLUS                 : 73
+PLUS_ASSIGN          : 44
+QUESTION             : 49
+RBRACE               : 23
+RBRACKET             : 11 22 48
+RETURN               : 39 40
+RPAREN               : 14 15 36 37 38 41 80 88 89
+SEMI                 : 6 34 35 39 40 41
+SHL                  : 69
+SHR                  : 70
+TIMES                : 77
+VOID                 : 13 17 91
+WHILE                : 38
+XOR                  : 66
+error                : 
+
+Nonterminals, with rules where they appear
+
+additiveExpression   : 10 67 68 71
+addop                : 71
+argList              : 90 93
+args                 : 88 89
+bitwise_expression   : 58 59 62
+bitwise_op           : 62
+call                 : 82
+compoundStmt         : 14 15 29
+declaration          : 2 3
+declarationList      : 1 2
+empty                : 18 25 27 92
+expression           : 34 36 37 38 40 41 42 44 45 48 80 93 94
+expressionStmt       : 28
+factor               : 75 76 84 85 86 87
+funDeclaration       : 5
+iterationStmt        : 31
+localDeclarations    : 23 24
+logical_expression   : 49 49 50 50 51 58
+logical_op           : 58
+mulop                : 75
+outputStmt           : 33
+param                : 19 20
+paramList            : 16 19
+params               : 14 15
+program              : 0
+relop                : 50
+returnStmt           : 32
+selectionStmt        : 30
+shiftExpression      : 62 63 67
+shiftop              : 67
+simpleExpression     : 43 49
+statement            : 26 36 37 37 38
+statementList        : 23 26
+term                 : 71 72 75
+ternaryExpression    : 46
+typeSpecifier        : 6 14 15 21 22
+var                  : 42 44 45 81
+varDeclaration       : 4 24
+varDeclarationList   : 6 7
+varDeclarationType   : 7 8
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . declarationList
+    (2) declarationList -> . declarationList declaration
+    (3) declarationList -> . declaration
+    (4) declaration -> . varDeclaration
+    (5) declaration -> . funDeclaration
+    (6) varDeclaration -> . typeSpecifier varDeclarationList SEMI
+    (14) funDeclaration -> . typeSpecifier ID LPAREN params RPAREN compoundStmt
+    (15) funDeclaration -> . typeSpecifier MAIN LPAREN params RPAREN compoundStmt
+    (12) typeSpecifier -> . INT
+    (13) typeSpecifier -> . VOID
+
+    INT             shift and go to state 7
+    VOID            shift and go to state 8
+
+    program                        shift and go to state 1
+    declarationList                shift and go to state 2
+    declaration                    shift and go to state 3
+    varDeclaration                 shift and go to state 4
+    funDeclaration                 shift and go to state 5
+    typeSpecifier                  shift and go to state 6
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> declarationList .
+    (2) declarationList -> declarationList . declaration
+    (4) declaration -> . varDeclaration
+    (5) declaration -> . funDeclaration
+    (6) varDeclaration -> . typeSpecifier varDeclarationList SEMI
+    (14) funDeclaration -> . typeSpecifier ID LPAREN params RPAREN compoundStmt
+    (15) funDeclaration -> . typeSpecifier MAIN LPAREN params RPAREN compoundStmt
+    (12) typeSpecifier -> . INT
+    (13) typeSpecifier -> . VOID
+
+    $end            reduce using rule 1 (program -> declarationList .)
+    INT             shift and go to state 7
+    VOID            shift and go to state 8
+
+    declaration                    shift and go to state 9
+    varDeclaration                 shift and go to state 4
+    funDeclaration                 shift and go to state 5
+    typeSpecifier                  shift and go to state 6
+
+state 3
+
+    (3) declarationList -> declaration .
+
+    INT             reduce using rule 3 (declarationList -> declaration .)
+    VOID            reduce using rule 3 (declarationList -> declaration .)
+    $end            reduce using rule 3 (declarationList -> declaration .)
+
+
+state 4
+
+    (4) declaration -> varDeclaration .
+
+    INT             reduce using rule 4 (declaration -> varDeclaration .)
+    VOID            reduce using rule 4 (declaration -> varDeclaration .)
+    $end            reduce using rule 4 (declaration -> varDeclaration .)
+
+
+state 5
+
+    (5) declaration -> funDeclaration .
+
+    INT             reduce using rule 5 (declaration -> funDeclaration .)
+    VOID            reduce using rule 5 (declaration -> funDeclaration .)
+    $end            reduce using rule 5 (declaration -> funDeclaration .)
+
+
+state 6
+
+    (6) varDeclaration -> typeSpecifier . varDeclarationList SEMI
+    (14) funDeclaration -> typeSpecifier . ID LPAREN params RPAREN compoundStmt
+    (15) funDeclaration -> typeSpecifier . MAIN LPAREN params RPAREN compoundStmt
+    (7) varDeclarationList -> . varDeclarationList COMMA varDeclarationType
+    (8) varDeclarationList -> . varDeclarationType
+    (9) varDeclarationType -> . ID
+    (10) varDeclarationType -> . ID ASSIGN additiveExpression
+    (11) varDeclarationType -> . ID LBRACKET NUM RBRACKET
+
+    ID              shift and go to state 11
+    MAIN            shift and go to state 12
+
+    varDeclarationList             shift and go to state 10
+    varDeclarationType             shift and go to state 13
+
+state 7
+
+    (12) typeSpecifier -> INT .
+
+    ID              reduce using rule 12 (typeSpecifier -> INT .)
+    MAIN            reduce using rule 12 (typeSpecifier -> INT .)
+
+
+state 8
+
+    (13) typeSpecifier -> VOID .
+
+    ID              reduce using rule 13 (typeSpecifier -> VOID .)
+    MAIN            reduce using rule 13 (typeSpecifier -> VOID .)
+
+
+state 9
+
+    (2) declarationList -> declarationList declaration .
+
+    INT             reduce using rule 2 (declarationList -> declarationList declaration .)
+    VOID            reduce using rule 2 (declarationList -> declarationList declaration .)
+    $end            reduce using rule 2 (declarationList -> declarationList declaration .)
+
+
+state 10
+
+    (6) varDeclaration -> typeSpecifier varDeclarationList . SEMI
+    (7) varDeclarationList -> varDeclarationList . COMMA varDeclarationType
+
+    SEMI            shift and go to state 14
+    COMMA           shift and go to state 15
+
+
+state 11
+
+    (14) funDeclaration -> typeSpecifier ID . LPAREN params RPAREN compoundStmt
+    (9) varDeclarationType -> ID .
+    (10) varDeclarationType -> ID . ASSIGN additiveExpression
+    (11) varDeclarationType -> ID . LBRACKET NUM RBRACKET
+
+    LPAREN          shift and go to state 16
+    SEMI            reduce using rule 9 (varDeclarationType -> ID .)
+    COMMA           reduce using rule 9 (varDeclarationType -> ID .)
+    ASSIGN          shift and go to state 17
+    LBRACKET        shift and go to state 18
+
+
+state 12
+
+    (15) funDeclaration -> typeSpecifier MAIN . LPAREN params RPAREN compoundStmt
+
+    LPAREN          shift and go to state 19
+
+
+state 13
+
+    (8) varDeclarationList -> varDeclarationType .
+
+    SEMI            reduce using rule 8 (varDeclarationList -> varDeclarationType .)
+    COMMA           reduce using rule 8 (varDeclarationList -> varDeclarationType .)
+
+
+state 14
+
+    (6) varDeclaration -> typeSpecifier varDeclarationList SEMI .
+
+    INT             reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    VOID            reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    $end            reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    RBRACE          reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    SEMI            reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    LBRACE          reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    IF              reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    WHILE           reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    RETURN          reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    OUTPUT          reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    ID              reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    LPAREN          reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    NUM             reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    NOT             reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    INC             reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    DEC             reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    NEGATION        reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+    INPUT           reduce using rule 6 (varDeclaration -> typeSpecifier varDeclarationList SEMI .)
+
+
+state 15
+
+    (7) varDeclarationList -> varDeclarationList COMMA . varDeclarationType
+    (9) varDeclarationType -> . ID
+    (10) varDeclarationType -> . ID ASSIGN additiveExpression
+    (11) varDeclarationType -> . ID LBRACKET NUM RBRACKET
+
+    ID              shift and go to state 21
+
+    varDeclarationType             shift and go to state 20
+
+state 16
+
+    (14) funDeclaration -> typeSpecifier ID LPAREN . params RPAREN compoundStmt
+    (16) params -> . paramList
+    (17) params -> . VOID
+    (18) params -> . empty
+    (19) paramList -> . paramList COMMA param
+    (20) paramList -> . param
+    (95) empty -> .
+    (21) param -> . typeSpecifier ID
+    (22) param -> . typeSpecifier ID LBRACKET RBRACKET
+    (12) typeSpecifier -> . INT
+    (13) typeSpecifier -> . VOID
+
+    VOID            shift and go to state 25
+    RPAREN          reduce using rule 95 (empty -> .)
+    INT             shift and go to state 7
+
+    typeSpecifier                  shift and go to state 22
+    params                         shift and go to state 23
+    paramList                      shift and go to state 24
+    empty                          shift and go to state 26
+    param                          shift and go to state 27
+
+state 17
+
+    (10) varDeclarationType -> ID ASSIGN . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    additiveExpression             shift and go to state 29
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 18
+
+    (11) varDeclarationType -> ID LBRACKET . NUM RBRACKET
+
+    NUM             shift and go to state 41
+
+
+state 19
+
+    (15) funDeclaration -> typeSpecifier MAIN LPAREN . params RPAREN compoundStmt
+    (16) params -> . paramList
+    (17) params -> . VOID
+    (18) params -> . empty
+    (19) paramList -> . paramList COMMA param
+    (20) paramList -> . param
+    (95) empty -> .
+    (21) param -> . typeSpecifier ID
+    (22) param -> . typeSpecifier ID LBRACKET RBRACKET
+    (12) typeSpecifier -> . INT
+    (13) typeSpecifier -> . VOID
+
+    VOID            shift and go to state 25
+    RPAREN          reduce using rule 95 (empty -> .)
+    INT             shift and go to state 7
+
+    typeSpecifier                  shift and go to state 22
+    params                         shift and go to state 42
+    paramList                      shift and go to state 24
+    empty                          shift and go to state 26
+    param                          shift and go to state 27
+
+state 20
+
+    (7) varDeclarationList -> varDeclarationList COMMA varDeclarationType .
+
+    SEMI            reduce using rule 7 (varDeclarationList -> varDeclarationList COMMA varDeclarationType .)
+    COMMA           reduce using rule 7 (varDeclarationList -> varDeclarationList COMMA varDeclarationType .)
+
+
+state 21
+
+    (9) varDeclarationType -> ID .
+    (10) varDeclarationType -> ID . ASSIGN additiveExpression
+    (11) varDeclarationType -> ID . LBRACKET NUM RBRACKET
+
+    SEMI            reduce using rule 9 (varDeclarationType -> ID .)
+    COMMA           reduce using rule 9 (varDeclarationType -> ID .)
+    ASSIGN          shift and go to state 17
+    LBRACKET        shift and go to state 18
+
+
+state 22
+
+    (21) param -> typeSpecifier . ID
+    (22) param -> typeSpecifier . ID LBRACKET RBRACKET
+
+    ID              shift and go to state 43
+
+
+state 23
+
+    (14) funDeclaration -> typeSpecifier ID LPAREN params . RPAREN compoundStmt
+
+    RPAREN          shift and go to state 44
+
+
+state 24
+
+    (16) params -> paramList .
+    (19) paramList -> paramList . COMMA param
+
+    RPAREN          reduce using rule 16 (params -> paramList .)
+    COMMA           shift and go to state 45
+
+
+state 25
+
+    (17) params -> VOID .
+    (13) typeSpecifier -> VOID .
+
+    RPAREN          reduce using rule 17 (params -> VOID .)
+    ID              reduce using rule 13 (typeSpecifier -> VOID .)
+
+
+state 26
+
+    (18) params -> empty .
+
+    RPAREN          reduce using rule 18 (params -> empty .)
+
+
+state 27
+
+    (20) paramList -> param .
+
+    COMMA           reduce using rule 20 (paramList -> param .)
+    RPAREN          reduce using rule 20 (paramList -> param .)
+
+
+state 28
+
+    (47) var -> ID .
+    (48) var -> ID . LBRACKET expression RBRACKET
+    (88) call -> ID . LPAREN args RPAREN
+
+    TIMES           reduce using rule 47 (var -> ID .)
+    DIVIDE          reduce using rule 47 (var -> ID .)
+    MOD             reduce using rule 47 (var -> ID .)
+    PLUS            reduce using rule 47 (var -> ID .)
+    MINUS           reduce using rule 47 (var -> ID .)
+    SEMI            reduce using rule 47 (var -> ID .)
+    COMMA           reduce using rule 47 (var -> ID .)
+    ASSIGN          reduce using rule 47 (var -> ID .)
+    PLUS_ASSIGN     reduce using rule 47 (var -> ID .)
+    MINUS_ASSIGN    reduce using rule 47 (var -> ID .)
+    SHL             reduce using rule 47 (var -> ID .)
+    SHR             reduce using rule 47 (var -> ID .)
+    LAN             reduce using rule 47 (var -> ID .)
+    LOR             reduce using rule 47 (var -> ID .)
+    XOR             reduce using rule 47 (var -> ID .)
+    GT              reduce using rule 47 (var -> ID .)
+    LT              reduce using rule 47 (var -> ID .)
+    GE              reduce using rule 47 (var -> ID .)
+    LE              reduce using rule 47 (var -> ID .)
+    EQ              reduce using rule 47 (var -> ID .)
+    NEQ             reduce using rule 47 (var -> ID .)
+    AND             reduce using rule 47 (var -> ID .)
+    OR              reduce using rule 47 (var -> ID .)
+    QUESTION        reduce using rule 47 (var -> ID .)
+    RPAREN          reduce using rule 47 (var -> ID .)
+    RBRACKET        reduce using rule 47 (var -> ID .)
+    COLON           reduce using rule 47 (var -> ID .)
+    LBRACKET        shift and go to state 46
+    LPAREN          shift and go to state 47
+
+
+state 29
+
+    (10) varDeclarationType -> ID ASSIGN additiveExpression .
+    (71) additiveExpression -> additiveExpression . addop term
+    (73) addop -> . PLUS
+    (74) addop -> . MINUS
+
+    SEMI            reduce using rule 10 (varDeclarationType -> ID ASSIGN additiveExpression .)
+    COMMA           reduce using rule 10 (varDeclarationType -> ID ASSIGN additiveExpression .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+
+    addop                          shift and go to state 48
+
+state 30
+
+    (72) additiveExpression -> term .
+    (75) term -> term . mulop factor
+    (77) mulop -> . TIMES
+    (78) mulop -> . DIVIDE
+    (79) mulop -> . MOD
+
+    PLUS            reduce using rule 72 (additiveExpression -> term .)
+    MINUS           reduce using rule 72 (additiveExpression -> term .)
+    SEMI            reduce using rule 72 (additiveExpression -> term .)
+    COMMA           reduce using rule 72 (additiveExpression -> term .)
+    SHL             reduce using rule 72 (additiveExpression -> term .)
+    SHR             reduce using rule 72 (additiveExpression -> term .)
+    LAN             reduce using rule 72 (additiveExpression -> term .)
+    LOR             reduce using rule 72 (additiveExpression -> term .)
+    XOR             reduce using rule 72 (additiveExpression -> term .)
+    GT              reduce using rule 72 (additiveExpression -> term .)
+    LT              reduce using rule 72 (additiveExpression -> term .)
+    GE              reduce using rule 72 (additiveExpression -> term .)
+    LE              reduce using rule 72 (additiveExpression -> term .)
+    EQ              reduce using rule 72 (additiveExpression -> term .)
+    NEQ             reduce using rule 72 (additiveExpression -> term .)
+    AND             reduce using rule 72 (additiveExpression -> term .)
+    OR              reduce using rule 72 (additiveExpression -> term .)
+    QUESTION        reduce using rule 72 (additiveExpression -> term .)
+    RPAREN          reduce using rule 72 (additiveExpression -> term .)
+    RBRACKET        reduce using rule 72 (additiveExpression -> term .)
+    COLON           reduce using rule 72 (additiveExpression -> term .)
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    MOD             shift and go to state 54
+
+    mulop                          shift and go to state 51
+
+state 31
+
+    (76) term -> factor .
+
+    TIMES           reduce using rule 76 (term -> factor .)
+    DIVIDE          reduce using rule 76 (term -> factor .)
+    MOD             reduce using rule 76 (term -> factor .)
+    PLUS            reduce using rule 76 (term -> factor .)
+    MINUS           reduce using rule 76 (term -> factor .)
+    SEMI            reduce using rule 76 (term -> factor .)
+    COMMA           reduce using rule 76 (term -> factor .)
+    SHL             reduce using rule 76 (term -> factor .)
+    SHR             reduce using rule 76 (term -> factor .)
+    LAN             reduce using rule 76 (term -> factor .)
+    LOR             reduce using rule 76 (term -> factor .)
+    XOR             reduce using rule 76 (term -> factor .)
+    GT              reduce using rule 76 (term -> factor .)
+    LT              reduce using rule 76 (term -> factor .)
+    GE              reduce using rule 76 (term -> factor .)
+    LE              reduce using rule 76 (term -> factor .)
+    EQ              reduce using rule 76 (term -> factor .)
+    NEQ             reduce using rule 76 (term -> factor .)
+    AND             reduce using rule 76 (term -> factor .)
+    OR              reduce using rule 76 (term -> factor .)
+    QUESTION        reduce using rule 76 (term -> factor .)
+    RPAREN          reduce using rule 76 (term -> factor .)
+    RBRACKET        reduce using rule 76 (term -> factor .)
+    COLON           reduce using rule 76 (term -> factor .)
+
+
+state 32
+
+    (80) factor -> LPAREN . expression RPAREN
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    expression                     shift and go to state 55
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 33
+
+    (81) factor -> var .
+
+    TIMES           reduce using rule 81 (factor -> var .)
+    DIVIDE          reduce using rule 81 (factor -> var .)
+    MOD             reduce using rule 81 (factor -> var .)
+    PLUS            reduce using rule 81 (factor -> var .)
+    MINUS           reduce using rule 81 (factor -> var .)
+    SEMI            reduce using rule 81 (factor -> var .)
+    COMMA           reduce using rule 81 (factor -> var .)
+    SHL             reduce using rule 81 (factor -> var .)
+    SHR             reduce using rule 81 (factor -> var .)
+    LAN             reduce using rule 81 (factor -> var .)
+    LOR             reduce using rule 81 (factor -> var .)
+    XOR             reduce using rule 81 (factor -> var .)
+    GT              reduce using rule 81 (factor -> var .)
+    LT              reduce using rule 81 (factor -> var .)
+    GE              reduce using rule 81 (factor -> var .)
+    LE              reduce using rule 81 (factor -> var .)
+    EQ              reduce using rule 81 (factor -> var .)
+    NEQ             reduce using rule 81 (factor -> var .)
+    AND             reduce using rule 81 (factor -> var .)
+    OR              reduce using rule 81 (factor -> var .)
+    QUESTION        reduce using rule 81 (factor -> var .)
+    RPAREN          reduce using rule 81 (factor -> var .)
+    RBRACKET        reduce using rule 81 (factor -> var .)
+    COLON           reduce using rule 81 (factor -> var .)
+
+
+state 34
+
+    (82) factor -> call .
+
+    TIMES           reduce using rule 82 (factor -> call .)
+    DIVIDE          reduce using rule 82 (factor -> call .)
+    MOD             reduce using rule 82 (factor -> call .)
+    PLUS            reduce using rule 82 (factor -> call .)
+    MINUS           reduce using rule 82 (factor -> call .)
+    SEMI            reduce using rule 82 (factor -> call .)
+    COMMA           reduce using rule 82 (factor -> call .)
+    SHL             reduce using rule 82 (factor -> call .)
+    SHR             reduce using rule 82 (factor -> call .)
+    LAN             reduce using rule 82 (factor -> call .)
+    LOR             reduce using rule 82 (factor -> call .)
+    XOR             reduce using rule 82 (factor -> call .)
+    GT              reduce using rule 82 (factor -> call .)
+    LT              reduce using rule 82 (factor -> call .)
+    GE              reduce using rule 82 (factor -> call .)
+    LE              reduce using rule 82 (factor -> call .)
+    EQ              reduce using rule 82 (factor -> call .)
+    NEQ             reduce using rule 82 (factor -> call .)
+    AND             reduce using rule 82 (factor -> call .)
+    OR              reduce using rule 82 (factor -> call .)
+    QUESTION        reduce using rule 82 (factor -> call .)
+    RPAREN          reduce using rule 82 (factor -> call .)
+    RBRACKET        reduce using rule 82 (factor -> call .)
+    COLON           reduce using rule 82 (factor -> call .)
+
+
+state 35
+
+    (83) factor -> NUM .
+
+    TIMES           reduce using rule 83 (factor -> NUM .)
+    DIVIDE          reduce using rule 83 (factor -> NUM .)
+    MOD             reduce using rule 83 (factor -> NUM .)
+    PLUS            reduce using rule 83 (factor -> NUM .)
+    MINUS           reduce using rule 83 (factor -> NUM .)
+    SEMI            reduce using rule 83 (factor -> NUM .)
+    COMMA           reduce using rule 83 (factor -> NUM .)
+    SHL             reduce using rule 83 (factor -> NUM .)
+    SHR             reduce using rule 83 (factor -> NUM .)
+    LAN             reduce using rule 83 (factor -> NUM .)
+    LOR             reduce using rule 83 (factor -> NUM .)
+    XOR             reduce using rule 83 (factor -> NUM .)
+    GT              reduce using rule 83 (factor -> NUM .)
+    LT              reduce using rule 83 (factor -> NUM .)
+    GE              reduce using rule 83 (factor -> NUM .)
+    LE              reduce using rule 83 (factor -> NUM .)
+    EQ              reduce using rule 83 (factor -> NUM .)
+    NEQ             reduce using rule 83 (factor -> NUM .)
+    AND             reduce using rule 83 (factor -> NUM .)
+    OR              reduce using rule 83 (factor -> NUM .)
+    QUESTION        reduce using rule 83 (factor -> NUM .)
+    RPAREN          reduce using rule 83 (factor -> NUM .)
+    RBRACKET        reduce using rule 83 (factor -> NUM .)
+    COLON           reduce using rule 83 (factor -> NUM .)
+
+
+state 36
+
+    (84) factor -> NOT . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    factor                         shift and go to state 63
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 37
+
+    (85) factor -> INC . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    factor                         shift and go to state 64
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 38
+
+    (86) factor -> DEC . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    factor                         shift and go to state 65
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 39
+
+    (87) factor -> NEGATION . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    factor                         shift and go to state 66
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 40
+
+    (89) call -> INPUT . LPAREN args RPAREN
+
+    LPAREN          shift and go to state 67
+
+
+state 41
+
+    (11) varDeclarationType -> ID LBRACKET NUM . RBRACKET
+
+    RBRACKET        shift and go to state 68
+
+
+state 42
+
+    (15) funDeclaration -> typeSpecifier MAIN LPAREN params . RPAREN compoundStmt
+
+    RPAREN          shift and go to state 69
+
+
+state 43
+
+    (21) param -> typeSpecifier ID .
+    (22) param -> typeSpecifier ID . LBRACKET RBRACKET
+
+    COMMA           reduce using rule 21 (param -> typeSpecifier ID .)
+    RPAREN          reduce using rule 21 (param -> typeSpecifier ID .)
+    LBRACKET        shift and go to state 70
+
+
+state 44
+
+    (14) funDeclaration -> typeSpecifier ID LPAREN params RPAREN . compoundStmt
+    (23) compoundStmt -> . LBRACE localDeclarations statementList RBRACE
+
+    LBRACE          shift and go to state 72
+
+    compoundStmt                   shift and go to state 71
+
+state 45
+
+    (19) paramList -> paramList COMMA . param
+    (21) param -> . typeSpecifier ID
+    (22) param -> . typeSpecifier ID LBRACKET RBRACKET
+    (12) typeSpecifier -> . INT
+    (13) typeSpecifier -> . VOID
+
+    INT             shift and go to state 7
+    VOID            shift and go to state 8
+
+    param                          shift and go to state 73
+    typeSpecifier                  shift and go to state 22
+
+state 46
+
+    (48) var -> ID LBRACKET . expression RBRACKET
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    expression                     shift and go to state 74
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 47
+
+    (88) call -> ID LPAREN . args RPAREN
+    (90) args -> . argList
+    (91) args -> . VOID
+    (92) args -> . empty
+    (93) argList -> . argList COMMA expression
+    (94) argList -> . expression
+    (95) empty -> .
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    VOID            shift and go to state 77
+    RPAREN          reduce using rule 95 (empty -> .)
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    args                           shift and go to state 75
+    argList                        shift and go to state 76
+    empty                          shift and go to state 78
+    expression                     shift and go to state 79
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 48
+
+    (71) additiveExpression -> additiveExpression addop . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    term                           shift and go to state 80
+    factor                         shift and go to state 31
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 49
+
+    (73) addop -> PLUS .
+
+    LPAREN          reduce using rule 73 (addop -> PLUS .)
+    NUM             reduce using rule 73 (addop -> PLUS .)
+    NOT             reduce using rule 73 (addop -> PLUS .)
+    INC             reduce using rule 73 (addop -> PLUS .)
+    DEC             reduce using rule 73 (addop -> PLUS .)
+    NEGATION        reduce using rule 73 (addop -> PLUS .)
+    ID              reduce using rule 73 (addop -> PLUS .)
+    INPUT           reduce using rule 73 (addop -> PLUS .)
+
+
+state 50
+
+    (74) addop -> MINUS .
+
+    LPAREN          reduce using rule 74 (addop -> MINUS .)
+    NUM             reduce using rule 74 (addop -> MINUS .)
+    NOT             reduce using rule 74 (addop -> MINUS .)
+    INC             reduce using rule 74 (addop -> MINUS .)
+    DEC             reduce using rule 74 (addop -> MINUS .)
+    NEGATION        reduce using rule 74 (addop -> MINUS .)
+    ID              reduce using rule 74 (addop -> MINUS .)
+    INPUT           reduce using rule 74 (addop -> MINUS .)
+
+
+state 51
+
+    (75) term -> term mulop . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    factor                         shift and go to state 81
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 52
+
+    (77) mulop -> TIMES .
+
+    LPAREN          reduce using rule 77 (mulop -> TIMES .)
+    NUM             reduce using rule 77 (mulop -> TIMES .)
+    NOT             reduce using rule 77 (mulop -> TIMES .)
+    INC             reduce using rule 77 (mulop -> TIMES .)
+    DEC             reduce using rule 77 (mulop -> TIMES .)
+    NEGATION        reduce using rule 77 (mulop -> TIMES .)
+    ID              reduce using rule 77 (mulop -> TIMES .)
+    INPUT           reduce using rule 77 (mulop -> TIMES .)
+
+
+state 53
+
+    (78) mulop -> DIVIDE .
+
+    LPAREN          reduce using rule 78 (mulop -> DIVIDE .)
+    NUM             reduce using rule 78 (mulop -> DIVIDE .)
+    NOT             reduce using rule 78 (mulop -> DIVIDE .)
+    INC             reduce using rule 78 (mulop -> DIVIDE .)
+    DEC             reduce using rule 78 (mulop -> DIVIDE .)
+    NEGATION        reduce using rule 78 (mulop -> DIVIDE .)
+    ID              reduce using rule 78 (mulop -> DIVIDE .)
+    INPUT           reduce using rule 78 (mulop -> DIVIDE .)
+
+
+state 54
+
+    (79) mulop -> MOD .
+
+    LPAREN          reduce using rule 79 (mulop -> MOD .)
+    NUM             reduce using rule 79 (mulop -> MOD .)
+    NOT             reduce using rule 79 (mulop -> MOD .)
+    INC             reduce using rule 79 (mulop -> MOD .)
+    DEC             reduce using rule 79 (mulop -> MOD .)
+    NEGATION        reduce using rule 79 (mulop -> MOD .)
+    ID              reduce using rule 79 (mulop -> MOD .)
+    INPUT           reduce using rule 79 (mulop -> MOD .)
+
+
+state 55
+
+    (80) factor -> LPAREN expression . RPAREN
+
+    RPAREN          shift and go to state 82
+
+
+state 56
+
+    (42) expression -> var . ASSIGN expression
+    (44) expression -> var . PLUS_ASSIGN expression
+    (45) expression -> var . MINUS_ASSIGN expression
+    (81) factor -> var .
+
+    ASSIGN          shift and go to state 83
+    PLUS_ASSIGN     shift and go to state 84
+    MINUS_ASSIGN    shift and go to state 85
+    TIMES           reduce using rule 81 (factor -> var .)
+    DIVIDE          reduce using rule 81 (factor -> var .)
+    MOD             reduce using rule 81 (factor -> var .)
+    PLUS            reduce using rule 81 (factor -> var .)
+    MINUS           reduce using rule 81 (factor -> var .)
+    SHL             reduce using rule 81 (factor -> var .)
+    SHR             reduce using rule 81 (factor -> var .)
+    LAN             reduce using rule 81 (factor -> var .)
+    LOR             reduce using rule 81 (factor -> var .)
+    XOR             reduce using rule 81 (factor -> var .)
+    GT              reduce using rule 81 (factor -> var .)
+    LT              reduce using rule 81 (factor -> var .)
+    GE              reduce using rule 81 (factor -> var .)
+    LE              reduce using rule 81 (factor -> var .)
+    EQ              reduce using rule 81 (factor -> var .)
+    NEQ             reduce using rule 81 (factor -> var .)
+    AND             reduce using rule 81 (factor -> var .)
+    OR              reduce using rule 81 (factor -> var .)
+    QUESTION        reduce using rule 81 (factor -> var .)
+    RPAREN          reduce using rule 81 (factor -> var .)
+    RBRACKET        reduce using rule 81 (factor -> var .)
+    COMMA           reduce using rule 81 (factor -> var .)
+    SEMI            reduce using rule 81 (factor -> var .)
+
+
+state 57
+
+    (43) expression -> simpleExpression .
+    (49) ternaryExpression -> simpleExpression . QUESTION logical_expression COLON logical_expression
+
+    RPAREN          reduce using rule 43 (expression -> simpleExpression .)
+    RBRACKET        reduce using rule 43 (expression -> simpleExpression .)
+    COMMA           reduce using rule 43 (expression -> simpleExpression .)
+    SEMI            reduce using rule 43 (expression -> simpleExpression .)
+    QUESTION        shift and go to state 86
+
+
+state 58
+
+    (46) expression -> ternaryExpression .
+
+    RPAREN          reduce using rule 46 (expression -> ternaryExpression .)
+    RBRACKET        reduce using rule 46 (expression -> ternaryExpression .)
+    COMMA           reduce using rule 46 (expression -> ternaryExpression .)
+    SEMI            reduce using rule 46 (expression -> ternaryExpression .)
+
+
+state 59
+
+    (50) simpleExpression -> logical_expression . relop logical_expression
+    (51) simpleExpression -> logical_expression .
+    (58) logical_expression -> logical_expression . logical_op bitwise_expression
+    (52) relop -> . GT
+    (53) relop -> . LT
+    (54) relop -> . GE
+    (55) relop -> . LE
+    (56) relop -> . EQ
+    (57) relop -> . NEQ
+    (60) logical_op -> . AND
+    (61) logical_op -> . OR
+
+    QUESTION        reduce using rule 51 (simpleExpression -> logical_expression .)
+    RPAREN          reduce using rule 51 (simpleExpression -> logical_expression .)
+    RBRACKET        reduce using rule 51 (simpleExpression -> logical_expression .)
+    COMMA           reduce using rule 51 (simpleExpression -> logical_expression .)
+    SEMI            reduce using rule 51 (simpleExpression -> logical_expression .)
+    GT              shift and go to state 89
+    LT              shift and go to state 90
+    GE              shift and go to state 91
+    LE              shift and go to state 92
+    EQ              shift and go to state 93
+    NEQ             shift and go to state 94
+    AND             shift and go to state 95
+    OR              shift and go to state 96
+
+    relop                          shift and go to state 87
+    logical_op                     shift and go to state 88
+
+state 60
+
+    (59) logical_expression -> bitwise_expression .
+    (62) bitwise_expression -> bitwise_expression . bitwise_op shiftExpression
+    (64) bitwise_op -> . LAN
+    (65) bitwise_op -> . LOR
+    (66) bitwise_op -> . XOR
+
+    GT              reduce using rule 59 (logical_expression -> bitwise_expression .)
+    LT              reduce using rule 59 (logical_expression -> bitwise_expression .)
+    GE              reduce using rule 59 (logical_expression -> bitwise_expression .)
+    LE              reduce using rule 59 (logical_expression -> bitwise_expression .)
+    EQ              reduce using rule 59 (logical_expression -> bitwise_expression .)
+    NEQ             reduce using rule 59 (logical_expression -> bitwise_expression .)
+    AND             reduce using rule 59 (logical_expression -> bitwise_expression .)
+    OR              reduce using rule 59 (logical_expression -> bitwise_expression .)
+    QUESTION        reduce using rule 59 (logical_expression -> bitwise_expression .)
+    RPAREN          reduce using rule 59 (logical_expression -> bitwise_expression .)
+    RBRACKET        reduce using rule 59 (logical_expression -> bitwise_expression .)
+    COMMA           reduce using rule 59 (logical_expression -> bitwise_expression .)
+    SEMI            reduce using rule 59 (logical_expression -> bitwise_expression .)
+    COLON           reduce using rule 59 (logical_expression -> bitwise_expression .)
+    LAN             shift and go to state 98
+    LOR             shift and go to state 99
+    XOR             shift and go to state 100
+
+    bitwise_op                     shift and go to state 97
+
+state 61
+
+    (63) bitwise_expression -> shiftExpression .
+    (67) shiftExpression -> shiftExpression . shiftop additiveExpression
+    (69) shiftop -> . SHL
+    (70) shiftop -> . SHR
+
+    LAN             reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    LOR             reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    XOR             reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    GT              reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    LT              reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    GE              reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    LE              reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    EQ              reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    NEQ             reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    AND             reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    OR              reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    QUESTION        reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    RPAREN          reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    RBRACKET        reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    COMMA           reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    SEMI            reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    COLON           reduce using rule 63 (bitwise_expression -> shiftExpression .)
+    SHL             shift and go to state 102
+    SHR             shift and go to state 103
+
+    shiftop                        shift and go to state 101
+
+state 62
+
+    (68) shiftExpression -> additiveExpression .
+    (71) additiveExpression -> additiveExpression . addop term
+    (73) addop -> . PLUS
+    (74) addop -> . MINUS
+
+    SHL             reduce using rule 68 (shiftExpression -> additiveExpression .)
+    SHR             reduce using rule 68 (shiftExpression -> additiveExpression .)
+    LAN             reduce using rule 68 (shiftExpression -> additiveExpression .)
+    LOR             reduce using rule 68 (shiftExpression -> additiveExpression .)
+    XOR             reduce using rule 68 (shiftExpression -> additiveExpression .)
+    GT              reduce using rule 68 (shiftExpression -> additiveExpression .)
+    LT              reduce using rule 68 (shiftExpression -> additiveExpression .)
+    GE              reduce using rule 68 (shiftExpression -> additiveExpression .)
+    LE              reduce using rule 68 (shiftExpression -> additiveExpression .)
+    EQ              reduce using rule 68 (shiftExpression -> additiveExpression .)
+    NEQ             reduce using rule 68 (shiftExpression -> additiveExpression .)
+    AND             reduce using rule 68 (shiftExpression -> additiveExpression .)
+    OR              reduce using rule 68 (shiftExpression -> additiveExpression .)
+    QUESTION        reduce using rule 68 (shiftExpression -> additiveExpression .)
+    RPAREN          reduce using rule 68 (shiftExpression -> additiveExpression .)
+    RBRACKET        reduce using rule 68 (shiftExpression -> additiveExpression .)
+    COMMA           reduce using rule 68 (shiftExpression -> additiveExpression .)
+    SEMI            reduce using rule 68 (shiftExpression -> additiveExpression .)
+    COLON           reduce using rule 68 (shiftExpression -> additiveExpression .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+
+    addop                          shift and go to state 48
+
+state 63
+
+    (84) factor -> NOT factor .
+
+    TIMES           reduce using rule 84 (factor -> NOT factor .)
+    DIVIDE          reduce using rule 84 (factor -> NOT factor .)
+    MOD             reduce using rule 84 (factor -> NOT factor .)
+    PLUS            reduce using rule 84 (factor -> NOT factor .)
+    MINUS           reduce using rule 84 (factor -> NOT factor .)
+    SEMI            reduce using rule 84 (factor -> NOT factor .)
+    COMMA           reduce using rule 84 (factor -> NOT factor .)
+    SHL             reduce using rule 84 (factor -> NOT factor .)
+    SHR             reduce using rule 84 (factor -> NOT factor .)
+    LAN             reduce using rule 84 (factor -> NOT factor .)
+    LOR             reduce using rule 84 (factor -> NOT factor .)
+    XOR             reduce using rule 84 (factor -> NOT factor .)
+    GT              reduce using rule 84 (factor -> NOT factor .)
+    LT              reduce using rule 84 (factor -> NOT factor .)
+    GE              reduce using rule 84 (factor -> NOT factor .)
+    LE              reduce using rule 84 (factor -> NOT factor .)
+    EQ              reduce using rule 84 (factor -> NOT factor .)
+    NEQ             reduce using rule 84 (factor -> NOT factor .)
+    AND             reduce using rule 84 (factor -> NOT factor .)
+    OR              reduce using rule 84 (factor -> NOT factor .)
+    QUESTION        reduce using rule 84 (factor -> NOT factor .)
+    RPAREN          reduce using rule 84 (factor -> NOT factor .)
+    RBRACKET        reduce using rule 84 (factor -> NOT factor .)
+    COLON           reduce using rule 84 (factor -> NOT factor .)
+
+
+state 64
+
+    (85) factor -> INC factor .
+
+    TIMES           reduce using rule 85 (factor -> INC factor .)
+    DIVIDE          reduce using rule 85 (factor -> INC factor .)
+    MOD             reduce using rule 85 (factor -> INC factor .)
+    PLUS            reduce using rule 85 (factor -> INC factor .)
+    MINUS           reduce using rule 85 (factor -> INC factor .)
+    SEMI            reduce using rule 85 (factor -> INC factor .)
+    COMMA           reduce using rule 85 (factor -> INC factor .)
+    SHL             reduce using rule 85 (factor -> INC factor .)
+    SHR             reduce using rule 85 (factor -> INC factor .)
+    LAN             reduce using rule 85 (factor -> INC factor .)
+    LOR             reduce using rule 85 (factor -> INC factor .)
+    XOR             reduce using rule 85 (factor -> INC factor .)
+    GT              reduce using rule 85 (factor -> INC factor .)
+    LT              reduce using rule 85 (factor -> INC factor .)
+    GE              reduce using rule 85 (factor -> INC factor .)
+    LE              reduce using rule 85 (factor -> INC factor .)
+    EQ              reduce using rule 85 (factor -> INC factor .)
+    NEQ             reduce using rule 85 (factor -> INC factor .)
+    AND             reduce using rule 85 (factor -> INC factor .)
+    OR              reduce using rule 85 (factor -> INC factor .)
+    QUESTION        reduce using rule 85 (factor -> INC factor .)
+    RPAREN          reduce using rule 85 (factor -> INC factor .)
+    RBRACKET        reduce using rule 85 (factor -> INC factor .)
+    COLON           reduce using rule 85 (factor -> INC factor .)
+
+
+state 65
+
+    (86) factor -> DEC factor .
+
+    TIMES           reduce using rule 86 (factor -> DEC factor .)
+    DIVIDE          reduce using rule 86 (factor -> DEC factor .)
+    MOD             reduce using rule 86 (factor -> DEC factor .)
+    PLUS            reduce using rule 86 (factor -> DEC factor .)
+    MINUS           reduce using rule 86 (factor -> DEC factor .)
+    SEMI            reduce using rule 86 (factor -> DEC factor .)
+    COMMA           reduce using rule 86 (factor -> DEC factor .)
+    SHL             reduce using rule 86 (factor -> DEC factor .)
+    SHR             reduce using rule 86 (factor -> DEC factor .)
+    LAN             reduce using rule 86 (factor -> DEC factor .)
+    LOR             reduce using rule 86 (factor -> DEC factor .)
+    XOR             reduce using rule 86 (factor -> DEC factor .)
+    GT              reduce using rule 86 (factor -> DEC factor .)
+    LT              reduce using rule 86 (factor -> DEC factor .)
+    GE              reduce using rule 86 (factor -> DEC factor .)
+    LE              reduce using rule 86 (factor -> DEC factor .)
+    EQ              reduce using rule 86 (factor -> DEC factor .)
+    NEQ             reduce using rule 86 (factor -> DEC factor .)
+    AND             reduce using rule 86 (factor -> DEC factor .)
+    OR              reduce using rule 86 (factor -> DEC factor .)
+    QUESTION        reduce using rule 86 (factor -> DEC factor .)
+    RPAREN          reduce using rule 86 (factor -> DEC factor .)
+    RBRACKET        reduce using rule 86 (factor -> DEC factor .)
+    COLON           reduce using rule 86 (factor -> DEC factor .)
+
+
+state 66
+
+    (87) factor -> NEGATION factor .
+
+    TIMES           reduce using rule 87 (factor -> NEGATION factor .)
+    DIVIDE          reduce using rule 87 (factor -> NEGATION factor .)
+    MOD             reduce using rule 87 (factor -> NEGATION factor .)
+    PLUS            reduce using rule 87 (factor -> NEGATION factor .)
+    MINUS           reduce using rule 87 (factor -> NEGATION factor .)
+    SEMI            reduce using rule 87 (factor -> NEGATION factor .)
+    COMMA           reduce using rule 87 (factor -> NEGATION factor .)
+    SHL             reduce using rule 87 (factor -> NEGATION factor .)
+    SHR             reduce using rule 87 (factor -> NEGATION factor .)
+    LAN             reduce using rule 87 (factor -> NEGATION factor .)
+    LOR             reduce using rule 87 (factor -> NEGATION factor .)
+    XOR             reduce using rule 87 (factor -> NEGATION factor .)
+    GT              reduce using rule 87 (factor -> NEGATION factor .)
+    LT              reduce using rule 87 (factor -> NEGATION factor .)
+    GE              reduce using rule 87 (factor -> NEGATION factor .)
+    LE              reduce using rule 87 (factor -> NEGATION factor .)
+    EQ              reduce using rule 87 (factor -> NEGATION factor .)
+    NEQ             reduce using rule 87 (factor -> NEGATION factor .)
+    AND             reduce using rule 87 (factor -> NEGATION factor .)
+    OR              reduce using rule 87 (factor -> NEGATION factor .)
+    QUESTION        reduce using rule 87 (factor -> NEGATION factor .)
+    RPAREN          reduce using rule 87 (factor -> NEGATION factor .)
+    RBRACKET        reduce using rule 87 (factor -> NEGATION factor .)
+    COLON           reduce using rule 87 (factor -> NEGATION factor .)
+
+
+state 67
+
+    (89) call -> INPUT LPAREN . args RPAREN
+    (90) args -> . argList
+    (91) args -> . VOID
+    (92) args -> . empty
+    (93) argList -> . argList COMMA expression
+    (94) argList -> . expression
+    (95) empty -> .
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    VOID            shift and go to state 77
+    RPAREN          reduce using rule 95 (empty -> .)
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    args                           shift and go to state 104
+    argList                        shift and go to state 76
+    empty                          shift and go to state 78
+    expression                     shift and go to state 79
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 68
+
+    (11) varDeclarationType -> ID LBRACKET NUM RBRACKET .
+
+    SEMI            reduce using rule 11 (varDeclarationType -> ID LBRACKET NUM RBRACKET .)
+    COMMA           reduce using rule 11 (varDeclarationType -> ID LBRACKET NUM RBRACKET .)
+
+
+state 69
+
+    (15) funDeclaration -> typeSpecifier MAIN LPAREN params RPAREN . compoundStmt
+    (23) compoundStmt -> . LBRACE localDeclarations statementList RBRACE
+
+    LBRACE          shift and go to state 72
+
+    compoundStmt                   shift and go to state 105
+
+state 70
+
+    (22) param -> typeSpecifier ID LBRACKET . RBRACKET
+
+    RBRACKET        shift and go to state 106
+
+
+state 71
+
+    (14) funDeclaration -> typeSpecifier ID LPAREN params RPAREN compoundStmt .
+
+    INT             reduce using rule 14 (funDeclaration -> typeSpecifier ID LPAREN params RPAREN compoundStmt .)
+    VOID            reduce using rule 14 (funDeclaration -> typeSpecifier ID LPAREN params RPAREN compoundStmt .)
+    $end            reduce using rule 14 (funDeclaration -> typeSpecifier ID LPAREN params RPAREN compoundStmt .)
+
+
+state 72
+
+    (23) compoundStmt -> LBRACE . localDeclarations statementList RBRACE
+    (24) localDeclarations -> . localDeclarations varDeclaration
+    (25) localDeclarations -> . empty
+    (95) empty -> .
+
+    INT             reduce using rule 95 (empty -> .)
+    VOID            reduce using rule 95 (empty -> .)
+    RBRACE          reduce using rule 95 (empty -> .)
+    SEMI            reduce using rule 95 (empty -> .)
+    LBRACE          reduce using rule 95 (empty -> .)
+    IF              reduce using rule 95 (empty -> .)
+    WHILE           reduce using rule 95 (empty -> .)
+    RETURN          reduce using rule 95 (empty -> .)
+    OUTPUT          reduce using rule 95 (empty -> .)
+    ID              reduce using rule 95 (empty -> .)
+    LPAREN          reduce using rule 95 (empty -> .)
+    NUM             reduce using rule 95 (empty -> .)
+    NOT             reduce using rule 95 (empty -> .)
+    INC             reduce using rule 95 (empty -> .)
+    DEC             reduce using rule 95 (empty -> .)
+    NEGATION        reduce using rule 95 (empty -> .)
+    INPUT           reduce using rule 95 (empty -> .)
+
+    localDeclarations              shift and go to state 107
+    empty                          shift and go to state 108
+
+state 73
+
+    (19) paramList -> paramList COMMA param .
+
+    COMMA           reduce using rule 19 (paramList -> paramList COMMA param .)
+    RPAREN          reduce using rule 19 (paramList -> paramList COMMA param .)
+
+
+state 74
+
+    (48) var -> ID LBRACKET expression . RBRACKET
+
+    RBRACKET        shift and go to state 109
+
+
+state 75
+
+    (88) call -> ID LPAREN args . RPAREN
+
+    RPAREN          shift and go to state 110
+
+
+state 76
+
+    (90) args -> argList .
+    (93) argList -> argList . COMMA expression
+
+    RPAREN          reduce using rule 90 (args -> argList .)
+    COMMA           shift and go to state 111
+
+
+state 77
+
+    (91) args -> VOID .
+
+    RPAREN          reduce using rule 91 (args -> VOID .)
+
+
+state 78
+
+    (92) args -> empty .
+
+    RPAREN          reduce using rule 92 (args -> empty .)
+
+
+state 79
+
+    (94) argList -> expression .
+
+    COMMA           reduce using rule 94 (argList -> expression .)
+    RPAREN          reduce using rule 94 (argList -> expression .)
+
+
+state 80
+
+    (71) additiveExpression -> additiveExpression addop term .
+    (75) term -> term . mulop factor
+    (77) mulop -> . TIMES
+    (78) mulop -> . DIVIDE
+    (79) mulop -> . MOD
+
+    PLUS            reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    MINUS           reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    SEMI            reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    COMMA           reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    SHL             reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    SHR             reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    LAN             reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    LOR             reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    XOR             reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    GT              reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    LT              reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    GE              reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    LE              reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    EQ              reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    NEQ             reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    AND             reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    OR              reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    QUESTION        reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    RPAREN          reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    RBRACKET        reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    COLON           reduce using rule 71 (additiveExpression -> additiveExpression addop term .)
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    MOD             shift and go to state 54
+
+    mulop                          shift and go to state 51
+
+state 81
+
+    (75) term -> term mulop factor .
+
+    TIMES           reduce using rule 75 (term -> term mulop factor .)
+    DIVIDE          reduce using rule 75 (term -> term mulop factor .)
+    MOD             reduce using rule 75 (term -> term mulop factor .)
+    PLUS            reduce using rule 75 (term -> term mulop factor .)
+    MINUS           reduce using rule 75 (term -> term mulop factor .)
+    SEMI            reduce using rule 75 (term -> term mulop factor .)
+    COMMA           reduce using rule 75 (term -> term mulop factor .)
+    SHL             reduce using rule 75 (term -> term mulop factor .)
+    SHR             reduce using rule 75 (term -> term mulop factor .)
+    LAN             reduce using rule 75 (term -> term mulop factor .)
+    LOR             reduce using rule 75 (term -> term mulop factor .)
+    XOR             reduce using rule 75 (term -> term mulop factor .)
+    GT              reduce using rule 75 (term -> term mulop factor .)
+    LT              reduce using rule 75 (term -> term mulop factor .)
+    GE              reduce using rule 75 (term -> term mulop factor .)
+    LE              reduce using rule 75 (term -> term mulop factor .)
+    EQ              reduce using rule 75 (term -> term mulop factor .)
+    NEQ             reduce using rule 75 (term -> term mulop factor .)
+    AND             reduce using rule 75 (term -> term mulop factor .)
+    OR              reduce using rule 75 (term -> term mulop factor .)
+    QUESTION        reduce using rule 75 (term -> term mulop factor .)
+    RPAREN          reduce using rule 75 (term -> term mulop factor .)
+    RBRACKET        reduce using rule 75 (term -> term mulop factor .)
+    COLON           reduce using rule 75 (term -> term mulop factor .)
+
+
+state 82
+
+    (80) factor -> LPAREN expression RPAREN .
+
+    TIMES           reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    MOD             reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    SEMI            reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    SHL             reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    SHR             reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    LAN             reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    LOR             reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    XOR             reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    GT              reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    LT              reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    GE              reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    LE              reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    EQ              reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    NEQ             reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    AND             reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    OR              reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    QUESTION        reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+    COLON           reduce using rule 80 (factor -> LPAREN expression RPAREN .)
+
+
+state 83
+
+    (42) expression -> var ASSIGN . expression
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    var                            shift and go to state 56
+    expression                     shift and go to state 112
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 84
+
+    (44) expression -> var PLUS_ASSIGN . expression
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    var                            shift and go to state 56
+    expression                     shift and go to state 113
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 85
+
+    (45) expression -> var MINUS_ASSIGN . expression
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    var                            shift and go to state 56
+    expression                     shift and go to state 114
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 86
+
+    (49) ternaryExpression -> simpleExpression QUESTION . logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    logical_expression             shift and go to state 115
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 87
+
+    (50) simpleExpression -> logical_expression relop . logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    logical_expression             shift and go to state 116
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 88
+
+    (58) logical_expression -> logical_expression logical_op . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    bitwise_expression             shift and go to state 117
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 89
+
+    (52) relop -> GT .
+
+    LPAREN          reduce using rule 52 (relop -> GT .)
+    NUM             reduce using rule 52 (relop -> GT .)
+    NOT             reduce using rule 52 (relop -> GT .)
+    INC             reduce using rule 52 (relop -> GT .)
+    DEC             reduce using rule 52 (relop -> GT .)
+    NEGATION        reduce using rule 52 (relop -> GT .)
+    ID              reduce using rule 52 (relop -> GT .)
+    INPUT           reduce using rule 52 (relop -> GT .)
+
+
+state 90
+
+    (53) relop -> LT .
+
+    LPAREN          reduce using rule 53 (relop -> LT .)
+    NUM             reduce using rule 53 (relop -> LT .)
+    NOT             reduce using rule 53 (relop -> LT .)
+    INC             reduce using rule 53 (relop -> LT .)
+    DEC             reduce using rule 53 (relop -> LT .)
+    NEGATION        reduce using rule 53 (relop -> LT .)
+    ID              reduce using rule 53 (relop -> LT .)
+    INPUT           reduce using rule 53 (relop -> LT .)
+
+
+state 91
+
+    (54) relop -> GE .
+
+    LPAREN          reduce using rule 54 (relop -> GE .)
+    NUM             reduce using rule 54 (relop -> GE .)
+    NOT             reduce using rule 54 (relop -> GE .)
+    INC             reduce using rule 54 (relop -> GE .)
+    DEC             reduce using rule 54 (relop -> GE .)
+    NEGATION        reduce using rule 54 (relop -> GE .)
+    ID              reduce using rule 54 (relop -> GE .)
+    INPUT           reduce using rule 54 (relop -> GE .)
+
+
+state 92
+
+    (55) relop -> LE .
+
+    LPAREN          reduce using rule 55 (relop -> LE .)
+    NUM             reduce using rule 55 (relop -> LE .)
+    NOT             reduce using rule 55 (relop -> LE .)
+    INC             reduce using rule 55 (relop -> LE .)
+    DEC             reduce using rule 55 (relop -> LE .)
+    NEGATION        reduce using rule 55 (relop -> LE .)
+    ID              reduce using rule 55 (relop -> LE .)
+    INPUT           reduce using rule 55 (relop -> LE .)
+
+
+state 93
+
+    (56) relop -> EQ .
+
+    LPAREN          reduce using rule 56 (relop -> EQ .)
+    NUM             reduce using rule 56 (relop -> EQ .)
+    NOT             reduce using rule 56 (relop -> EQ .)
+    INC             reduce using rule 56 (relop -> EQ .)
+    DEC             reduce using rule 56 (relop -> EQ .)
+    NEGATION        reduce using rule 56 (relop -> EQ .)
+    ID              reduce using rule 56 (relop -> EQ .)
+    INPUT           reduce using rule 56 (relop -> EQ .)
+
+
+state 94
+
+    (57) relop -> NEQ .
+
+    LPAREN          reduce using rule 57 (relop -> NEQ .)
+    NUM             reduce using rule 57 (relop -> NEQ .)
+    NOT             reduce using rule 57 (relop -> NEQ .)
+    INC             reduce using rule 57 (relop -> NEQ .)
+    DEC             reduce using rule 57 (relop -> NEQ .)
+    NEGATION        reduce using rule 57 (relop -> NEQ .)
+    ID              reduce using rule 57 (relop -> NEQ .)
+    INPUT           reduce using rule 57 (relop -> NEQ .)
+
+
+state 95
+
+    (60) logical_op -> AND .
+
+    LPAREN          reduce using rule 60 (logical_op -> AND .)
+    NUM             reduce using rule 60 (logical_op -> AND .)
+    NOT             reduce using rule 60 (logical_op -> AND .)
+    INC             reduce using rule 60 (logical_op -> AND .)
+    DEC             reduce using rule 60 (logical_op -> AND .)
+    NEGATION        reduce using rule 60 (logical_op -> AND .)
+    ID              reduce using rule 60 (logical_op -> AND .)
+    INPUT           reduce using rule 60 (logical_op -> AND .)
+
+
+state 96
+
+    (61) logical_op -> OR .
+
+    LPAREN          reduce using rule 61 (logical_op -> OR .)
+    NUM             reduce using rule 61 (logical_op -> OR .)
+    NOT             reduce using rule 61 (logical_op -> OR .)
+    INC             reduce using rule 61 (logical_op -> OR .)
+    DEC             reduce using rule 61 (logical_op -> OR .)
+    NEGATION        reduce using rule 61 (logical_op -> OR .)
+    ID              reduce using rule 61 (logical_op -> OR .)
+    INPUT           reduce using rule 61 (logical_op -> OR .)
+
+
+state 97
+
+    (62) bitwise_expression -> bitwise_expression bitwise_op . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    shiftExpression                shift and go to state 118
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 98
+
+    (64) bitwise_op -> LAN .
+
+    LPAREN          reduce using rule 64 (bitwise_op -> LAN .)
+    NUM             reduce using rule 64 (bitwise_op -> LAN .)
+    NOT             reduce using rule 64 (bitwise_op -> LAN .)
+    INC             reduce using rule 64 (bitwise_op -> LAN .)
+    DEC             reduce using rule 64 (bitwise_op -> LAN .)
+    NEGATION        reduce using rule 64 (bitwise_op -> LAN .)
+    ID              reduce using rule 64 (bitwise_op -> LAN .)
+    INPUT           reduce using rule 64 (bitwise_op -> LAN .)
+
+
+state 99
+
+    (65) bitwise_op -> LOR .
+
+    LPAREN          reduce using rule 65 (bitwise_op -> LOR .)
+    NUM             reduce using rule 65 (bitwise_op -> LOR .)
+    NOT             reduce using rule 65 (bitwise_op -> LOR .)
+    INC             reduce using rule 65 (bitwise_op -> LOR .)
+    DEC             reduce using rule 65 (bitwise_op -> LOR .)
+    NEGATION        reduce using rule 65 (bitwise_op -> LOR .)
+    ID              reduce using rule 65 (bitwise_op -> LOR .)
+    INPUT           reduce using rule 65 (bitwise_op -> LOR .)
+
+
+state 100
+
+    (66) bitwise_op -> XOR .
+
+    LPAREN          reduce using rule 66 (bitwise_op -> XOR .)
+    NUM             reduce using rule 66 (bitwise_op -> XOR .)
+    NOT             reduce using rule 66 (bitwise_op -> XOR .)
+    INC             reduce using rule 66 (bitwise_op -> XOR .)
+    DEC             reduce using rule 66 (bitwise_op -> XOR .)
+    NEGATION        reduce using rule 66 (bitwise_op -> XOR .)
+    ID              reduce using rule 66 (bitwise_op -> XOR .)
+    INPUT           reduce using rule 66 (bitwise_op -> XOR .)
+
+
+state 101
+
+    (67) shiftExpression -> shiftExpression shiftop . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    additiveExpression             shift and go to state 119
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 102
+
+    (69) shiftop -> SHL .
+
+    LPAREN          reduce using rule 69 (shiftop -> SHL .)
+    NUM             reduce using rule 69 (shiftop -> SHL .)
+    NOT             reduce using rule 69 (shiftop -> SHL .)
+    INC             reduce using rule 69 (shiftop -> SHL .)
+    DEC             reduce using rule 69 (shiftop -> SHL .)
+    NEGATION        reduce using rule 69 (shiftop -> SHL .)
+    ID              reduce using rule 69 (shiftop -> SHL .)
+    INPUT           reduce using rule 69 (shiftop -> SHL .)
+
+
+state 103
+
+    (70) shiftop -> SHR .
+
+    LPAREN          reduce using rule 70 (shiftop -> SHR .)
+    NUM             reduce using rule 70 (shiftop -> SHR .)
+    NOT             reduce using rule 70 (shiftop -> SHR .)
+    INC             reduce using rule 70 (shiftop -> SHR .)
+    DEC             reduce using rule 70 (shiftop -> SHR .)
+    NEGATION        reduce using rule 70 (shiftop -> SHR .)
+    ID              reduce using rule 70 (shiftop -> SHR .)
+    INPUT           reduce using rule 70 (shiftop -> SHR .)
+
+
+state 104
+
+    (89) call -> INPUT LPAREN args . RPAREN
+
+    RPAREN          shift and go to state 120
+
+
+state 105
+
+    (15) funDeclaration -> typeSpecifier MAIN LPAREN params RPAREN compoundStmt .
+
+    INT             reduce using rule 15 (funDeclaration -> typeSpecifier MAIN LPAREN params RPAREN compoundStmt .)
+    VOID            reduce using rule 15 (funDeclaration -> typeSpecifier MAIN LPAREN params RPAREN compoundStmt .)
+    $end            reduce using rule 15 (funDeclaration -> typeSpecifier MAIN LPAREN params RPAREN compoundStmt .)
+
+
+state 106
+
+    (22) param -> typeSpecifier ID LBRACKET RBRACKET .
+
+    COMMA           reduce using rule 22 (param -> typeSpecifier ID LBRACKET RBRACKET .)
+    RPAREN          reduce using rule 22 (param -> typeSpecifier ID LBRACKET RBRACKET .)
+
+
+state 107
+
+    (23) compoundStmt -> LBRACE localDeclarations . statementList RBRACE
+    (24) localDeclarations -> localDeclarations . varDeclaration
+    (26) statementList -> . statementList statement
+    (27) statementList -> . empty
+    (6) varDeclaration -> . typeSpecifier varDeclarationList SEMI
+    (95) empty -> .
+    (12) typeSpecifier -> . INT
+    (13) typeSpecifier -> . VOID
+
+    RBRACE          reduce using rule 95 (empty -> .)
+    SEMI            reduce using rule 95 (empty -> .)
+    LBRACE          reduce using rule 95 (empty -> .)
+    IF              reduce using rule 95 (empty -> .)
+    WHILE           reduce using rule 95 (empty -> .)
+    RETURN          reduce using rule 95 (empty -> .)
+    OUTPUT          reduce using rule 95 (empty -> .)
+    ID              reduce using rule 95 (empty -> .)
+    LPAREN          reduce using rule 95 (empty -> .)
+    NUM             reduce using rule 95 (empty -> .)
+    NOT             reduce using rule 95 (empty -> .)
+    INC             reduce using rule 95 (empty -> .)
+    DEC             reduce using rule 95 (empty -> .)
+    NEGATION        reduce using rule 95 (empty -> .)
+    INPUT           reduce using rule 95 (empty -> .)
+    INT             shift and go to state 7
+    VOID            shift and go to state 8
+
+    statementList                  shift and go to state 121
+    varDeclaration                 shift and go to state 122
+    empty                          shift and go to state 123
+    typeSpecifier                  shift and go to state 124
+
+state 108
+
+    (25) localDeclarations -> empty .
+
+    INT             reduce using rule 25 (localDeclarations -> empty .)
+    VOID            reduce using rule 25 (localDeclarations -> empty .)
+    RBRACE          reduce using rule 25 (localDeclarations -> empty .)
+    SEMI            reduce using rule 25 (localDeclarations -> empty .)
+    LBRACE          reduce using rule 25 (localDeclarations -> empty .)
+    IF              reduce using rule 25 (localDeclarations -> empty .)
+    WHILE           reduce using rule 25 (localDeclarations -> empty .)
+    RETURN          reduce using rule 25 (localDeclarations -> empty .)
+    OUTPUT          reduce using rule 25 (localDeclarations -> empty .)
+    ID              reduce using rule 25 (localDeclarations -> empty .)
+    LPAREN          reduce using rule 25 (localDeclarations -> empty .)
+    NUM             reduce using rule 25 (localDeclarations -> empty .)
+    NOT             reduce using rule 25 (localDeclarations -> empty .)
+    INC             reduce using rule 25 (localDeclarations -> empty .)
+    DEC             reduce using rule 25 (localDeclarations -> empty .)
+    NEGATION        reduce using rule 25 (localDeclarations -> empty .)
+    INPUT           reduce using rule 25 (localDeclarations -> empty .)
+
+
+state 109
+
+    (48) var -> ID LBRACKET expression RBRACKET .
+
+    TIMES           reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    DIVIDE          reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    MOD             reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    PLUS            reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    MINUS           reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    SEMI            reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    ASSIGN          reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    PLUS_ASSIGN     reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    MINUS_ASSIGN    reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    SHL             reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    SHR             reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    LAN             reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    LOR             reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    XOR             reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    GT              reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    LT              reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    GE              reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    LE              reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    EQ              reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    NEQ             reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    AND             reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    OR              reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    QUESTION        reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    RPAREN          reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+    COLON           reduce using rule 48 (var -> ID LBRACKET expression RBRACKET .)
+
+
+state 110
+
+    (88) call -> ID LPAREN args RPAREN .
+
+    TIMES           reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    DIVIDE          reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    MOD             reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    PLUS            reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    MINUS           reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    SEMI            reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    COMMA           reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    SHL             reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    SHR             reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    LAN             reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    LOR             reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    XOR             reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    GT              reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    LT              reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    GE              reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    LE              reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    EQ              reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    NEQ             reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    AND             reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    OR              reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    QUESTION        reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    RPAREN          reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    RBRACKET        reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+    COLON           reduce using rule 88 (call -> ID LPAREN args RPAREN .)
+
+
+state 111
+
+    (93) argList -> argList COMMA . expression
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    expression                     shift and go to state 125
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 112
+
+    (42) expression -> var ASSIGN expression .
+
+    RPAREN          reduce using rule 42 (expression -> var ASSIGN expression .)
+    RBRACKET        reduce using rule 42 (expression -> var ASSIGN expression .)
+    COMMA           reduce using rule 42 (expression -> var ASSIGN expression .)
+    SEMI            reduce using rule 42 (expression -> var ASSIGN expression .)
+
+
+state 113
+
+    (44) expression -> var PLUS_ASSIGN expression .
+
+    RPAREN          reduce using rule 44 (expression -> var PLUS_ASSIGN expression .)
+    RBRACKET        reduce using rule 44 (expression -> var PLUS_ASSIGN expression .)
+    COMMA           reduce using rule 44 (expression -> var PLUS_ASSIGN expression .)
+    SEMI            reduce using rule 44 (expression -> var PLUS_ASSIGN expression .)
+
+
+state 114
+
+    (45) expression -> var MINUS_ASSIGN expression .
+
+    RPAREN          reduce using rule 45 (expression -> var MINUS_ASSIGN expression .)
+    RBRACKET        reduce using rule 45 (expression -> var MINUS_ASSIGN expression .)
+    COMMA           reduce using rule 45 (expression -> var MINUS_ASSIGN expression .)
+    SEMI            reduce using rule 45 (expression -> var MINUS_ASSIGN expression .)
+
+
+state 115
+
+    (49) ternaryExpression -> simpleExpression QUESTION logical_expression . COLON logical_expression
+    (58) logical_expression -> logical_expression . logical_op bitwise_expression
+    (60) logical_op -> . AND
+    (61) logical_op -> . OR
+
+    COLON           shift and go to state 126
+    AND             shift and go to state 95
+    OR              shift and go to state 96
+
+    logical_op                     shift and go to state 88
+
+state 116
+
+    (50) simpleExpression -> logical_expression relop logical_expression .
+    (58) logical_expression -> logical_expression . logical_op bitwise_expression
+    (60) logical_op -> . AND
+    (61) logical_op -> . OR
+
+    QUESTION        reduce using rule 50 (simpleExpression -> logical_expression relop logical_expression .)
+    RPAREN          reduce using rule 50 (simpleExpression -> logical_expression relop logical_expression .)
+    RBRACKET        reduce using rule 50 (simpleExpression -> logical_expression relop logical_expression .)
+    COMMA           reduce using rule 50 (simpleExpression -> logical_expression relop logical_expression .)
+    SEMI            reduce using rule 50 (simpleExpression -> logical_expression relop logical_expression .)
+    AND             shift and go to state 95
+    OR              shift and go to state 96
+
+    logical_op                     shift and go to state 88
+
+state 117
+
+    (58) logical_expression -> logical_expression logical_op bitwise_expression .
+    (62) bitwise_expression -> bitwise_expression . bitwise_op shiftExpression
+    (64) bitwise_op -> . LAN
+    (65) bitwise_op -> . LOR
+    (66) bitwise_op -> . XOR
+
+    GT              reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    LT              reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    GE              reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    LE              reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    EQ              reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    NEQ             reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    AND             reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    OR              reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    QUESTION        reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    RPAREN          reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    RBRACKET        reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    COMMA           reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    SEMI            reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    COLON           reduce using rule 58 (logical_expression -> logical_expression logical_op bitwise_expression .)
+    LAN             shift and go to state 98
+    LOR             shift and go to state 99
+    XOR             shift and go to state 100
+
+    bitwise_op                     shift and go to state 97
+
+state 118
+
+    (62) bitwise_expression -> bitwise_expression bitwise_op shiftExpression .
+    (67) shiftExpression -> shiftExpression . shiftop additiveExpression
+    (69) shiftop -> . SHL
+    (70) shiftop -> . SHR
+
+    LAN             reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    LOR             reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    XOR             reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    GT              reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    LT              reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    GE              reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    LE              reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    EQ              reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    NEQ             reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    AND             reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    OR              reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    QUESTION        reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    RPAREN          reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    RBRACKET        reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    COMMA           reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    SEMI            reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    COLON           reduce using rule 62 (bitwise_expression -> bitwise_expression bitwise_op shiftExpression .)
+    SHL             shift and go to state 102
+    SHR             shift and go to state 103
+
+    shiftop                        shift and go to state 101
+
+state 119
+
+    (67) shiftExpression -> shiftExpression shiftop additiveExpression .
+    (71) additiveExpression -> additiveExpression . addop term
+    (73) addop -> . PLUS
+    (74) addop -> . MINUS
+
+    SHL             reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    SHR             reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    LAN             reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    LOR             reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    XOR             reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    GT              reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    LT              reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    GE              reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    LE              reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    EQ              reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    NEQ             reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    AND             reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    OR              reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    QUESTION        reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    RPAREN          reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    RBRACKET        reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    COMMA           reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    SEMI            reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    COLON           reduce using rule 67 (shiftExpression -> shiftExpression shiftop additiveExpression .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+
+    addop                          shift and go to state 48
+
+state 120
+
+    (89) call -> INPUT LPAREN args RPAREN .
+
+    TIMES           reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    DIVIDE          reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    MOD             reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    PLUS            reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    MINUS           reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    SEMI            reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    COMMA           reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    SHL             reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    SHR             reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    LAN             reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    LOR             reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    XOR             reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    GT              reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    LT              reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    GE              reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    LE              reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    EQ              reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    NEQ             reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    AND             reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    OR              reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    QUESTION        reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    RPAREN          reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    RBRACKET        reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+    COLON           reduce using rule 89 (call -> INPUT LPAREN args RPAREN .)
+
+
+state 121
+
+    (23) compoundStmt -> LBRACE localDeclarations statementList . RBRACE
+    (26) statementList -> statementList . statement
+    (28) statement -> . expressionStmt
+    (29) statement -> . compoundStmt
+    (30) statement -> . selectionStmt
+    (31) statement -> . iterationStmt
+    (32) statement -> . returnStmt
+    (33) statement -> . outputStmt
+    (34) expressionStmt -> . expression SEMI
+    (35) expressionStmt -> . SEMI
+    (23) compoundStmt -> . LBRACE localDeclarations statementList RBRACE
+    (36) selectionStmt -> . IF LPAREN expression RPAREN statement
+    (37) selectionStmt -> . IF LPAREN expression RPAREN statement ELSE statement
+    (38) iterationStmt -> . WHILE LPAREN expression RPAREN statement
+    (39) returnStmt -> . RETURN SEMI
+    (40) returnStmt -> . RETURN expression SEMI
+    (41) outputStmt -> . OUTPUT LPAREN expression RPAREN SEMI
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    RBRACE          shift and go to state 127
+    SEMI            shift and go to state 136
+    LBRACE          shift and go to state 72
+    IF              shift and go to state 137
+    WHILE           shift and go to state 138
+    RETURN          shift and go to state 139
+    OUTPUT          shift and go to state 140
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    statement                      shift and go to state 128
+    expressionStmt                 shift and go to state 129
+    compoundStmt                   shift and go to state 130
+    selectionStmt                  shift and go to state 131
+    iterationStmt                  shift and go to state 132
+    returnStmt                     shift and go to state 133
+    outputStmt                     shift and go to state 134
+    expression                     shift and go to state 135
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 122
+
+    (24) localDeclarations -> localDeclarations varDeclaration .
+
+    INT             reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    VOID            reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    RBRACE          reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    SEMI            reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    LBRACE          reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    IF              reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    WHILE           reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    RETURN          reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    OUTPUT          reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    ID              reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    LPAREN          reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    NUM             reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    NOT             reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    INC             reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    DEC             reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    NEGATION        reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+    INPUT           reduce using rule 24 (localDeclarations -> localDeclarations varDeclaration .)
+
+
+state 123
+
+    (27) statementList -> empty .
+
+    RBRACE          reduce using rule 27 (statementList -> empty .)
+    SEMI            reduce using rule 27 (statementList -> empty .)
+    LBRACE          reduce using rule 27 (statementList -> empty .)
+    IF              reduce using rule 27 (statementList -> empty .)
+    WHILE           reduce using rule 27 (statementList -> empty .)
+    RETURN          reduce using rule 27 (statementList -> empty .)
+    OUTPUT          reduce using rule 27 (statementList -> empty .)
+    ID              reduce using rule 27 (statementList -> empty .)
+    LPAREN          reduce using rule 27 (statementList -> empty .)
+    NUM             reduce using rule 27 (statementList -> empty .)
+    NOT             reduce using rule 27 (statementList -> empty .)
+    INC             reduce using rule 27 (statementList -> empty .)
+    DEC             reduce using rule 27 (statementList -> empty .)
+    NEGATION        reduce using rule 27 (statementList -> empty .)
+    INPUT           reduce using rule 27 (statementList -> empty .)
+
+
+state 124
+
+    (6) varDeclaration -> typeSpecifier . varDeclarationList SEMI
+    (7) varDeclarationList -> . varDeclarationList COMMA varDeclarationType
+    (8) varDeclarationList -> . varDeclarationType
+    (9) varDeclarationType -> . ID
+    (10) varDeclarationType -> . ID ASSIGN additiveExpression
+    (11) varDeclarationType -> . ID LBRACKET NUM RBRACKET
+
+    ID              shift and go to state 21
+
+    varDeclarationList             shift and go to state 10
+    varDeclarationType             shift and go to state 13
+
+state 125
+
+    (93) argList -> argList COMMA expression .
+
+    COMMA           reduce using rule 93 (argList -> argList COMMA expression .)
+    RPAREN          reduce using rule 93 (argList -> argList COMMA expression .)
+
+
+state 126
+
+    (49) ternaryExpression -> simpleExpression QUESTION logical_expression COLON . logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    ID              shift and go to state 28
+    INPUT           shift and go to state 40
+
+    logical_expression             shift and go to state 141
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    var                            shift and go to state 33
+    call                           shift and go to state 34
+
+state 127
+
+    (23) compoundStmt -> LBRACE localDeclarations statementList RBRACE .
+
+    INT             reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    VOID            reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    $end            reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    RBRACE          reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    SEMI            reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    LBRACE          reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    IF              reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    WHILE           reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    RETURN          reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    OUTPUT          reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    ID              reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    LPAREN          reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    NUM             reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    NOT             reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    INC             reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    DEC             reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    NEGATION        reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    INPUT           reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+    ELSE            reduce using rule 23 (compoundStmt -> LBRACE localDeclarations statementList RBRACE .)
+
+
+state 128
+
+    (26) statementList -> statementList statement .
+
+    RBRACE          reduce using rule 26 (statementList -> statementList statement .)
+    SEMI            reduce using rule 26 (statementList -> statementList statement .)
+    LBRACE          reduce using rule 26 (statementList -> statementList statement .)
+    IF              reduce using rule 26 (statementList -> statementList statement .)
+    WHILE           reduce using rule 26 (statementList -> statementList statement .)
+    RETURN          reduce using rule 26 (statementList -> statementList statement .)
+    OUTPUT          reduce using rule 26 (statementList -> statementList statement .)
+    ID              reduce using rule 26 (statementList -> statementList statement .)
+    LPAREN          reduce using rule 26 (statementList -> statementList statement .)
+    NUM             reduce using rule 26 (statementList -> statementList statement .)
+    NOT             reduce using rule 26 (statementList -> statementList statement .)
+    INC             reduce using rule 26 (statementList -> statementList statement .)
+    DEC             reduce using rule 26 (statementList -> statementList statement .)
+    NEGATION        reduce using rule 26 (statementList -> statementList statement .)
+    INPUT           reduce using rule 26 (statementList -> statementList statement .)
+
+
+state 129
+
+    (28) statement -> expressionStmt .
+
+    RBRACE          reduce using rule 28 (statement -> expressionStmt .)
+    SEMI            reduce using rule 28 (statement -> expressionStmt .)
+    LBRACE          reduce using rule 28 (statement -> expressionStmt .)
+    IF              reduce using rule 28 (statement -> expressionStmt .)
+    WHILE           reduce using rule 28 (statement -> expressionStmt .)
+    RETURN          reduce using rule 28 (statement -> expressionStmt .)
+    OUTPUT          reduce using rule 28 (statement -> expressionStmt .)
+    ID              reduce using rule 28 (statement -> expressionStmt .)
+    LPAREN          reduce using rule 28 (statement -> expressionStmt .)
+    NUM             reduce using rule 28 (statement -> expressionStmt .)
+    NOT             reduce using rule 28 (statement -> expressionStmt .)
+    INC             reduce using rule 28 (statement -> expressionStmt .)
+    DEC             reduce using rule 28 (statement -> expressionStmt .)
+    NEGATION        reduce using rule 28 (statement -> expressionStmt .)
+    INPUT           reduce using rule 28 (statement -> expressionStmt .)
+    ELSE            reduce using rule 28 (statement -> expressionStmt .)
+
+
+state 130
+
+    (29) statement -> compoundStmt .
+
+    RBRACE          reduce using rule 29 (statement -> compoundStmt .)
+    SEMI            reduce using rule 29 (statement -> compoundStmt .)
+    LBRACE          reduce using rule 29 (statement -> compoundStmt .)
+    IF              reduce using rule 29 (statement -> compoundStmt .)
+    WHILE           reduce using rule 29 (statement -> compoundStmt .)
+    RETURN          reduce using rule 29 (statement -> compoundStmt .)
+    OUTPUT          reduce using rule 29 (statement -> compoundStmt .)
+    ID              reduce using rule 29 (statement -> compoundStmt .)
+    LPAREN          reduce using rule 29 (statement -> compoundStmt .)
+    NUM             reduce using rule 29 (statement -> compoundStmt .)
+    NOT             reduce using rule 29 (statement -> compoundStmt .)
+    INC             reduce using rule 29 (statement -> compoundStmt .)
+    DEC             reduce using rule 29 (statement -> compoundStmt .)
+    NEGATION        reduce using rule 29 (statement -> compoundStmt .)
+    INPUT           reduce using rule 29 (statement -> compoundStmt .)
+    ELSE            reduce using rule 29 (statement -> compoundStmt .)
+
+
+state 131
+
+    (30) statement -> selectionStmt .
+
+    RBRACE          reduce using rule 30 (statement -> selectionStmt .)
+    SEMI            reduce using rule 30 (statement -> selectionStmt .)
+    LBRACE          reduce using rule 30 (statement -> selectionStmt .)
+    IF              reduce using rule 30 (statement -> selectionStmt .)
+    WHILE           reduce using rule 30 (statement -> selectionStmt .)
+    RETURN          reduce using rule 30 (statement -> selectionStmt .)
+    OUTPUT          reduce using rule 30 (statement -> selectionStmt .)
+    ID              reduce using rule 30 (statement -> selectionStmt .)
+    LPAREN          reduce using rule 30 (statement -> selectionStmt .)
+    NUM             reduce using rule 30 (statement -> selectionStmt .)
+    NOT             reduce using rule 30 (statement -> selectionStmt .)
+    INC             reduce using rule 30 (statement -> selectionStmt .)
+    DEC             reduce using rule 30 (statement -> selectionStmt .)
+    NEGATION        reduce using rule 30 (statement -> selectionStmt .)
+    INPUT           reduce using rule 30 (statement -> selectionStmt .)
+    ELSE            reduce using rule 30 (statement -> selectionStmt .)
+
+
+state 132
+
+    (31) statement -> iterationStmt .
+
+    RBRACE          reduce using rule 31 (statement -> iterationStmt .)
+    SEMI            reduce using rule 31 (statement -> iterationStmt .)
+    LBRACE          reduce using rule 31 (statement -> iterationStmt .)
+    IF              reduce using rule 31 (statement -> iterationStmt .)
+    WHILE           reduce using rule 31 (statement -> iterationStmt .)
+    RETURN          reduce using rule 31 (statement -> iterationStmt .)
+    OUTPUT          reduce using rule 31 (statement -> iterationStmt .)
+    ID              reduce using rule 31 (statement -> iterationStmt .)
+    LPAREN          reduce using rule 31 (statement -> iterationStmt .)
+    NUM             reduce using rule 31 (statement -> iterationStmt .)
+    NOT             reduce using rule 31 (statement -> iterationStmt .)
+    INC             reduce using rule 31 (statement -> iterationStmt .)
+    DEC             reduce using rule 31 (statement -> iterationStmt .)
+    NEGATION        reduce using rule 31 (statement -> iterationStmt .)
+    INPUT           reduce using rule 31 (statement -> iterationStmt .)
+    ELSE            reduce using rule 31 (statement -> iterationStmt .)
+
+
+state 133
+
+    (32) statement -> returnStmt .
+
+    RBRACE          reduce using rule 32 (statement -> returnStmt .)
+    SEMI            reduce using rule 32 (statement -> returnStmt .)
+    LBRACE          reduce using rule 32 (statement -> returnStmt .)
+    IF              reduce using rule 32 (statement -> returnStmt .)
+    WHILE           reduce using rule 32 (statement -> returnStmt .)
+    RETURN          reduce using rule 32 (statement -> returnStmt .)
+    OUTPUT          reduce using rule 32 (statement -> returnStmt .)
+    ID              reduce using rule 32 (statement -> returnStmt .)
+    LPAREN          reduce using rule 32 (statement -> returnStmt .)
+    NUM             reduce using rule 32 (statement -> returnStmt .)
+    NOT             reduce using rule 32 (statement -> returnStmt .)
+    INC             reduce using rule 32 (statement -> returnStmt .)
+    DEC             reduce using rule 32 (statement -> returnStmt .)
+    NEGATION        reduce using rule 32 (statement -> returnStmt .)
+    INPUT           reduce using rule 32 (statement -> returnStmt .)
+    ELSE            reduce using rule 32 (statement -> returnStmt .)
+
+
+state 134
+
+    (33) statement -> outputStmt .
+
+    RBRACE          reduce using rule 33 (statement -> outputStmt .)
+    SEMI            reduce using rule 33 (statement -> outputStmt .)
+    LBRACE          reduce using rule 33 (statement -> outputStmt .)
+    IF              reduce using rule 33 (statement -> outputStmt .)
+    WHILE           reduce using rule 33 (statement -> outputStmt .)
+    RETURN          reduce using rule 33 (statement -> outputStmt .)
+    OUTPUT          reduce using rule 33 (statement -> outputStmt .)
+    ID              reduce using rule 33 (statement -> outputStmt .)
+    LPAREN          reduce using rule 33 (statement -> outputStmt .)
+    NUM             reduce using rule 33 (statement -> outputStmt .)
+    NOT             reduce using rule 33 (statement -> outputStmt .)
+    INC             reduce using rule 33 (statement -> outputStmt .)
+    DEC             reduce using rule 33 (statement -> outputStmt .)
+    NEGATION        reduce using rule 33 (statement -> outputStmt .)
+    INPUT           reduce using rule 33 (statement -> outputStmt .)
+    ELSE            reduce using rule 33 (statement -> outputStmt .)
+
+
+state 135
+
+    (34) expressionStmt -> expression . SEMI
+
+    SEMI            shift and go to state 142
+
+
+state 136
+
+    (35) expressionStmt -> SEMI .
+
+    RBRACE          reduce using rule 35 (expressionStmt -> SEMI .)
+    SEMI            reduce using rule 35 (expressionStmt -> SEMI .)
+    LBRACE          reduce using rule 35 (expressionStmt -> SEMI .)
+    IF              reduce using rule 35 (expressionStmt -> SEMI .)
+    WHILE           reduce using rule 35 (expressionStmt -> SEMI .)
+    RETURN          reduce using rule 35 (expressionStmt -> SEMI .)
+    OUTPUT          reduce using rule 35 (expressionStmt -> SEMI .)
+    ID              reduce using rule 35 (expressionStmt -> SEMI .)
+    LPAREN          reduce using rule 35 (expressionStmt -> SEMI .)
+    NUM             reduce using rule 35 (expressionStmt -> SEMI .)
+    NOT             reduce using rule 35 (expressionStmt -> SEMI .)
+    INC             reduce using rule 35 (expressionStmt -> SEMI .)
+    DEC             reduce using rule 35 (expressionStmt -> SEMI .)
+    NEGATION        reduce using rule 35 (expressionStmt -> SEMI .)
+    INPUT           reduce using rule 35 (expressionStmt -> SEMI .)
+    ELSE            reduce using rule 35 (expressionStmt -> SEMI .)
+
+
+state 137
+
+    (36) selectionStmt -> IF . LPAREN expression RPAREN statement
+    (37) selectionStmt -> IF . LPAREN expression RPAREN statement ELSE statement
+
+    LPAREN          shift and go to state 143
+
+
+state 138
+
+    (38) iterationStmt -> WHILE . LPAREN expression RPAREN statement
+
+    LPAREN          shift and go to state 144
+
+
+state 139
+
+    (39) returnStmt -> RETURN . SEMI
+    (40) returnStmt -> RETURN . expression SEMI
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    SEMI            shift and go to state 145
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    expression                     shift and go to state 146
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 140
+
+    (41) outputStmt -> OUTPUT . LPAREN expression RPAREN SEMI
+
+    LPAREN          shift and go to state 147
+
+
+state 141
+
+    (49) ternaryExpression -> simpleExpression QUESTION logical_expression COLON logical_expression .
+    (58) logical_expression -> logical_expression . logical_op bitwise_expression
+    (60) logical_op -> . AND
+    (61) logical_op -> . OR
+
+    RPAREN          reduce using rule 49 (ternaryExpression -> simpleExpression QUESTION logical_expression COLON logical_expression .)
+    RBRACKET        reduce using rule 49 (ternaryExpression -> simpleExpression QUESTION logical_expression COLON logical_expression .)
+    COMMA           reduce using rule 49 (ternaryExpression -> simpleExpression QUESTION logical_expression COLON logical_expression .)
+    SEMI            reduce using rule 49 (ternaryExpression -> simpleExpression QUESTION logical_expression COLON logical_expression .)
+    AND             shift and go to state 95
+    OR              shift and go to state 96
+
+    logical_op                     shift and go to state 88
+
+state 142
+
+    (34) expressionStmt -> expression SEMI .
+
+    RBRACE          reduce using rule 34 (expressionStmt -> expression SEMI .)
+    SEMI            reduce using rule 34 (expressionStmt -> expression SEMI .)
+    LBRACE          reduce using rule 34 (expressionStmt -> expression SEMI .)
+    IF              reduce using rule 34 (expressionStmt -> expression SEMI .)
+    WHILE           reduce using rule 34 (expressionStmt -> expression SEMI .)
+    RETURN          reduce using rule 34 (expressionStmt -> expression SEMI .)
+    OUTPUT          reduce using rule 34 (expressionStmt -> expression SEMI .)
+    ID              reduce using rule 34 (expressionStmt -> expression SEMI .)
+    LPAREN          reduce using rule 34 (expressionStmt -> expression SEMI .)
+    NUM             reduce using rule 34 (expressionStmt -> expression SEMI .)
+    NOT             reduce using rule 34 (expressionStmt -> expression SEMI .)
+    INC             reduce using rule 34 (expressionStmt -> expression SEMI .)
+    DEC             reduce using rule 34 (expressionStmt -> expression SEMI .)
+    NEGATION        reduce using rule 34 (expressionStmt -> expression SEMI .)
+    INPUT           reduce using rule 34 (expressionStmt -> expression SEMI .)
+    ELSE            reduce using rule 34 (expressionStmt -> expression SEMI .)
+
+
+state 143
+
+    (36) selectionStmt -> IF LPAREN . expression RPAREN statement
+    (37) selectionStmt -> IF LPAREN . expression RPAREN statement ELSE statement
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    expression                     shift and go to state 148
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 144
+
+    (38) iterationStmt -> WHILE LPAREN . expression RPAREN statement
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    expression                     shift and go to state 149
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 145
+
+    (39) returnStmt -> RETURN SEMI .
+
+    RBRACE          reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    SEMI            reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    LBRACE          reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    IF              reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    WHILE           reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    RETURN          reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    OUTPUT          reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    ID              reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    LPAREN          reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    NUM             reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    NOT             reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    INC             reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    DEC             reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    NEGATION        reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    INPUT           reduce using rule 39 (returnStmt -> RETURN SEMI .)
+    ELSE            reduce using rule 39 (returnStmt -> RETURN SEMI .)
+
+
+state 146
+
+    (40) returnStmt -> RETURN expression . SEMI
+
+    SEMI            shift and go to state 150
+
+
+state 147
+
+    (41) outputStmt -> OUTPUT LPAREN . expression RPAREN SEMI
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    expression                     shift and go to state 151
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 148
+
+    (36) selectionStmt -> IF LPAREN expression . RPAREN statement
+    (37) selectionStmt -> IF LPAREN expression . RPAREN statement ELSE statement
+
+    RPAREN          shift and go to state 152
+
+
+state 149
+
+    (38) iterationStmt -> WHILE LPAREN expression . RPAREN statement
+
+    RPAREN          shift and go to state 153
+
+
+state 150
+
+    (40) returnStmt -> RETURN expression SEMI .
+
+    RBRACE          reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    SEMI            reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    LBRACE          reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    IF              reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    WHILE           reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    RETURN          reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    OUTPUT          reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    ID              reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    LPAREN          reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    NUM             reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    NOT             reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    INC             reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    DEC             reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    NEGATION        reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    INPUT           reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+    ELSE            reduce using rule 40 (returnStmt -> RETURN expression SEMI .)
+
+
+state 151
+
+    (41) outputStmt -> OUTPUT LPAREN expression . RPAREN SEMI
+
+    RPAREN          shift and go to state 154
+
+
+state 152
+
+    (36) selectionStmt -> IF LPAREN expression RPAREN . statement
+    (37) selectionStmt -> IF LPAREN expression RPAREN . statement ELSE statement
+    (28) statement -> . expressionStmt
+    (29) statement -> . compoundStmt
+    (30) statement -> . selectionStmt
+    (31) statement -> . iterationStmt
+    (32) statement -> . returnStmt
+    (33) statement -> . outputStmt
+    (34) expressionStmt -> . expression SEMI
+    (35) expressionStmt -> . SEMI
+    (23) compoundStmt -> . LBRACE localDeclarations statementList RBRACE
+    (36) selectionStmt -> . IF LPAREN expression RPAREN statement
+    (37) selectionStmt -> . IF LPAREN expression RPAREN statement ELSE statement
+    (38) iterationStmt -> . WHILE LPAREN expression RPAREN statement
+    (39) returnStmt -> . RETURN SEMI
+    (40) returnStmt -> . RETURN expression SEMI
+    (41) outputStmt -> . OUTPUT LPAREN expression RPAREN SEMI
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    SEMI            shift and go to state 136
+    LBRACE          shift and go to state 72
+    IF              shift and go to state 137
+    WHILE           shift and go to state 138
+    RETURN          shift and go to state 139
+    OUTPUT          shift and go to state 140
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    expression                     shift and go to state 135
+    statement                      shift and go to state 155
+    expressionStmt                 shift and go to state 129
+    compoundStmt                   shift and go to state 130
+    selectionStmt                  shift and go to state 131
+    iterationStmt                  shift and go to state 132
+    returnStmt                     shift and go to state 133
+    outputStmt                     shift and go to state 134
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 153
+
+    (38) iterationStmt -> WHILE LPAREN expression RPAREN . statement
+    (28) statement -> . expressionStmt
+    (29) statement -> . compoundStmt
+    (30) statement -> . selectionStmt
+    (31) statement -> . iterationStmt
+    (32) statement -> . returnStmt
+    (33) statement -> . outputStmt
+    (34) expressionStmt -> . expression SEMI
+    (35) expressionStmt -> . SEMI
+    (23) compoundStmt -> . LBRACE localDeclarations statementList RBRACE
+    (36) selectionStmt -> . IF LPAREN expression RPAREN statement
+    (37) selectionStmt -> . IF LPAREN expression RPAREN statement ELSE statement
+    (38) iterationStmt -> . WHILE LPAREN expression RPAREN statement
+    (39) returnStmt -> . RETURN SEMI
+    (40) returnStmt -> . RETURN expression SEMI
+    (41) outputStmt -> . OUTPUT LPAREN expression RPAREN SEMI
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    SEMI            shift and go to state 136
+    LBRACE          shift and go to state 72
+    IF              shift and go to state 137
+    WHILE           shift and go to state 138
+    RETURN          shift and go to state 139
+    OUTPUT          shift and go to state 140
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    expression                     shift and go to state 135
+    statement                      shift and go to state 156
+    expressionStmt                 shift and go to state 129
+    compoundStmt                   shift and go to state 130
+    selectionStmt                  shift and go to state 131
+    iterationStmt                  shift and go to state 132
+    returnStmt                     shift and go to state 133
+    outputStmt                     shift and go to state 134
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 154
+
+    (41) outputStmt -> OUTPUT LPAREN expression RPAREN . SEMI
+
+    SEMI            shift and go to state 157
+
+
+state 155
+
+    (36) selectionStmt -> IF LPAREN expression RPAREN statement .
+    (37) selectionStmt -> IF LPAREN expression RPAREN statement . ELSE statement
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    RBRACE          reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    SEMI            reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    LBRACE          reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    IF              reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    WHILE           reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    RETURN          reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    OUTPUT          reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    ID              reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    LPAREN          reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    NUM             reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    NOT             reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    INC             reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    DEC             reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    NEGATION        reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    INPUT           reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .)
+    ELSE            shift and go to state 158
+
+  ! ELSE            [ reduce using rule 36 (selectionStmt -> IF LPAREN expression RPAREN statement .) ]
+
+
+state 156
+
+    (38) iterationStmt -> WHILE LPAREN expression RPAREN statement .
+
+    RBRACE          reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    SEMI            reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    LBRACE          reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    IF              reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    WHILE           reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    RETURN          reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    OUTPUT          reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    ID              reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    LPAREN          reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    NUM             reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    NOT             reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    INC             reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    DEC             reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    NEGATION        reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    INPUT           reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+    ELSE            reduce using rule 38 (iterationStmt -> WHILE LPAREN expression RPAREN statement .)
+
+
+state 157
+
+    (41) outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .
+
+    RBRACE          reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    SEMI            reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    LBRACE          reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    IF              reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    WHILE           reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    RETURN          reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    OUTPUT          reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    ID              reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    LPAREN          reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    NUM             reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    NOT             reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    INC             reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    DEC             reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    NEGATION        reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    INPUT           reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+    ELSE            reduce using rule 41 (outputStmt -> OUTPUT LPAREN expression RPAREN SEMI .)
+
+
+state 158
+
+    (37) selectionStmt -> IF LPAREN expression RPAREN statement ELSE . statement
+    (28) statement -> . expressionStmt
+    (29) statement -> . compoundStmt
+    (30) statement -> . selectionStmt
+    (31) statement -> . iterationStmt
+    (32) statement -> . returnStmt
+    (33) statement -> . outputStmt
+    (34) expressionStmt -> . expression SEMI
+    (35) expressionStmt -> . SEMI
+    (23) compoundStmt -> . LBRACE localDeclarations statementList RBRACE
+    (36) selectionStmt -> . IF LPAREN expression RPAREN statement
+    (37) selectionStmt -> . IF LPAREN expression RPAREN statement ELSE statement
+    (38) iterationStmt -> . WHILE LPAREN expression RPAREN statement
+    (39) returnStmt -> . RETURN SEMI
+    (40) returnStmt -> . RETURN expression SEMI
+    (41) outputStmt -> . OUTPUT LPAREN expression RPAREN SEMI
+    (42) expression -> . var ASSIGN expression
+    (43) expression -> . simpleExpression
+    (44) expression -> . var PLUS_ASSIGN expression
+    (45) expression -> . var MINUS_ASSIGN expression
+    (46) expression -> . ternaryExpression
+    (47) var -> . ID
+    (48) var -> . ID LBRACKET expression RBRACKET
+    (50) simpleExpression -> . logical_expression relop logical_expression
+    (51) simpleExpression -> . logical_expression
+    (49) ternaryExpression -> . simpleExpression QUESTION logical_expression COLON logical_expression
+    (58) logical_expression -> . logical_expression logical_op bitwise_expression
+    (59) logical_expression -> . bitwise_expression
+    (62) bitwise_expression -> . bitwise_expression bitwise_op shiftExpression
+    (63) bitwise_expression -> . shiftExpression
+    (67) shiftExpression -> . shiftExpression shiftop additiveExpression
+    (68) shiftExpression -> . additiveExpression
+    (71) additiveExpression -> . additiveExpression addop term
+    (72) additiveExpression -> . term
+    (75) term -> . term mulop factor
+    (76) term -> . factor
+    (80) factor -> . LPAREN expression RPAREN
+    (81) factor -> . var
+    (82) factor -> . call
+    (83) factor -> . NUM
+    (84) factor -> . NOT factor
+    (85) factor -> . INC factor
+    (86) factor -> . DEC factor
+    (87) factor -> . NEGATION factor
+    (88) call -> . ID LPAREN args RPAREN
+    (89) call -> . INPUT LPAREN args RPAREN
+
+    SEMI            shift and go to state 136
+    LBRACE          shift and go to state 72
+    IF              shift and go to state 137
+    WHILE           shift and go to state 138
+    RETURN          shift and go to state 139
+    OUTPUT          shift and go to state 140
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 32
+    NUM             shift and go to state 35
+    NOT             shift and go to state 36
+    INC             shift and go to state 37
+    DEC             shift and go to state 38
+    NEGATION        shift and go to state 39
+    INPUT           shift and go to state 40
+
+    expression                     shift and go to state 135
+    statement                      shift and go to state 159
+    expressionStmt                 shift and go to state 129
+    compoundStmt                   shift and go to state 130
+    selectionStmt                  shift and go to state 131
+    iterationStmt                  shift and go to state 132
+    returnStmt                     shift and go to state 133
+    outputStmt                     shift and go to state 134
+    var                            shift and go to state 56
+    simpleExpression               shift and go to state 57
+    ternaryExpression              shift and go to state 58
+    logical_expression             shift and go to state 59
+    bitwise_expression             shift and go to state 60
+    shiftExpression                shift and go to state 61
+    additiveExpression             shift and go to state 62
+    term                           shift and go to state 30
+    factor                         shift and go to state 31
+    call                           shift and go to state 34
+
+state 159
+
+    (37) selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .
+
+    RBRACE          reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    SEMI            reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    LBRACE          reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    IF              reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    WHILE           reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    RETURN          reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    OUTPUT          reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    ID              reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    LPAREN          reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    NUM             reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    NOT             reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    INC             reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    DEC             reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    NEGATION        reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    INPUT           reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    ELSE            reduce using rule 37 (selectionStmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 155 resolved as shift

@@ -1,0 +1,224 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+@Writer : WanQiQi
+@File   : MyLexer.py
+@Desc   : 词法分析器
+"""
+import ply.lex as lex
+
+# 保留字列表
+reserved = {
+    'else': 'ELSE',
+    'if': 'IF',
+    'int': 'INT',
+    'return': 'RETURN',
+    'void': 'VOID',
+    'while': 'WHILE',
+    'input': 'INPUT',
+    'output': 'OUTPUT',
+    'main': 'MAIN'
+    # add more...
+}
+
+# 标记列表
+tokens = [
+             'PLUS',
+             'MINUS',
+             'TIMES',
+             'DIVIDE',
+             'GT',
+             'LT',
+             'GE',
+             'LE',
+             'EQ',
+             'NEQ',
+             'SEMI',
+             'COMMA',
+             'ASSIGN',
+             'LPAREN',
+             'RPAREN',
+             'LBRACKET',
+             'RBRACKET',
+             'LBRACE',
+             'RBRACE',
+             'MOD',  # Added MOD
+             'INC',  # Added INC
+             'DEC',  # Added DEC
+             'NOT',  # Added NOT
+             'AND',  # Added AND
+             'OR',  # Added OR
+             'SHL',  # Added SHL
+             'SHR',  # Added SHR
+             'NEGATION',  # Added NEGATION
+             'LOR',  # Added LOR
+             'XOR',  # Added XOR
+             'LAN',  # Added LAN
+             'PLUS_ASSIGN',  # Added +=
+             'MINUS_ASSIGN',  # Added -=
+             'QUESTION',  # Added ?
+             'COLON',  # Added :
+             'ID',
+             'NUM',
+             # 'STR',
+         ] + list(reserved.values())
+
+
+def MyLexer():
+    # 标记规则
+    # 文档字符串： 相应得正则表达式
+    # 正则表达式表示
+    t_PLUS = r'\+'
+    t_MINUS = r'-'
+    t_TIMES = r'\*'
+    t_DIVIDE = r'/'
+    t_LT = r'\<'
+    t_LE = r'\<\='
+    t_GT = r'\>'
+    t_GE = r'\>\='
+    t_EQ = r'\=\='
+    t_NEQ = r'\!\='
+    t_ASSIGN = r'\='
+    t_SEMI = r';'
+    t_COMMA = r','
+    t_LPAREN = r'\('
+    t_RPAREN = r'\)'
+    t_LBRACKET = r'\['
+    t_RBRACKET = r'\]'
+    t_LBRACE = r'\{'
+    t_RBRACE = r'\}'
+
+    t_MOD = r'%'
+    t_INC = r'\+\+'
+    t_DEC = r'\-\-'
+    t_NOT = r'!'
+    t_AND = r'\&\&'
+    t_OR = r'\|\|'
+    t_SHL = r'\<\<'
+    t_SHR = r'\>\>'
+    t_NEGATION = r'~'
+    t_LOR = r'\|'
+    t_XOR = r'\^'
+    t_LAN = r'&'
+    t_PLUS_ASSIGN = r'\+\='
+    t_MINUS_ASSIGN = r'\-\='
+    t_QUESTION = r'\?'
+    t_COLON = r':'
+    # t_STR     = r"""\".*?\"|\'.*?\'"""
+
+    digit = r'([0-9])'
+    letter = r'([_A-Za-z])'
+    identifier = r'(' + letter + r'(' + digit + r'|' + letter + r')*)'
+    number = r'(' + digit + digit + '*)'
+
+    # 标记规则
+    # 文档字符串： 相应得正则表达式
+    # 方法表示
+    def t_NUM(t):
+        """数字的标记规则
+
+        标记值保存数字的整型值
+
+        :param t: 标记对象
+        :return: 标记对象
+        """
+        t.value = int(t.value)
+        return t
+
+    t_NUM.__doc__ = number
+
+    def t_ID(t):
+        """标识符的标记规则
+
+        从保留字列表中查找保留字，并保存在标记类型中；如果不是保留字，类型就为标识符
+
+        :param t: 标记对象
+        :return: 标记对象
+        """
+        t.type = reserved.get(t.value, 'ID')  # Check for reserved words
+        # Look up symbol table information and return a tuple
+        # t.value = (t.value, symbol_lookup(t.value))
+        return t
+
+    t_ID.__doc__ = identifier
+
+    def t_newline(t):
+        r"""\n+"""
+        """记录行号的标记规则
+    
+        丢弃空行，记录源输入串中的作业行
+    
+        :param t: 标记对象
+        :return:
+        """
+        # 因为要扫描 raw string，多行注释不能放在最前面
+        t.lexer.lineno += len(t.value)
+
+    # C-style comment (/* ... */)
+    def t_comment(t):
+        r'/\*(.|\n)*?\*/'
+        t.lexer.lineno += t.value.count('\n')
+
+    # C++-style comment (//...)
+    def t_cpp_comment(t):
+        r'//.*\n'
+        t.lexer.lineno += 1
+
+    def find_column(input_data, token):
+        """列跟踪的规则
+
+        每当遇到新行的时候就重置列值，用于查找token在字符串的位置
+
+        :param input_data: 字符串
+        :param token: 标记对象
+        :return: 列号
+        """
+        last_cr = input_data.rfind('\n', 0, token.lexpos)
+        if last_cr < 0:
+            last_cr = 0
+        else:
+            last_cr += 1
+        column = token.lexpos - last_cr
+        return column
+
+    # 忽略字符
+    # 用于忽略 spaces 和 tabs
+    t_ignore = ' \t'
+
+    def t_error(t):
+        """错误处理的规则
+
+        输出不合法的字符，并且通过调用t.lexer.skip(1)跳过一个字符
+
+        :param t: 标记对象
+        :return:
+        """
+        print("Illegal character '%s' at line %d" % (t.value[0], t.lineno))
+        t.lexer.noError = False
+        t.lexer.skip(1)
+
+    # 构建词法分析器
+    lexer = lex.lex()
+    lexer.noError = True  # 设置有无不合法字符属性的初始值
+    return lexer
+
+
+# 测试
+if __name__ == '__main__':
+    my_lexer = MyLexer()
+
+    # 输入字符串
+    data = "||,|,<<,>>,~,|,^,&,+=,-=,?,:,*"
+
+    # 词法分析器获得输入
+    my_lexer.input(data)
+
+    # 标记化
+    for tok in my_lexer:
+        print(tok)
+        # print(find_column(data, tok))
+        # print(tok.type, tok.value, tok.lineno, tok.lexpos)
+        # tok.type 和 tok.value 属性表示标记本身的类型和值。
+        # tok.line 和 tok.lexpos 属性包含了标记的位置信息，
+        # tok.lexpos 表示标记相对于输入串起始位置的偏移。
